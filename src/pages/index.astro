@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import StatBanner from '../components/StatBanner.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Icon from '../components/Icon.astro';
+import PhotoLightbox from '../components/PhotoLightbox.astro';
+import { path, UI } from '../i18n/config';
+
+const locale = 'fr' as const;
+const t = UI[locale];
+
+const services = [
+  {
+    image: '/images/nacelles-facade-brique-immeuble-residentiel.jpg',
+    title: 'Vitres & façades',
+    description: 'Vitres en hauteur, décapage de façades, démoussage et graffitis.',
+  },
+  {
+    image: '/images/autolaveuse-entrepot-logistique.jpg',
+    title: 'Sols & grandes surfaces',
+    description: 'Sols industriels, entrepôts et parkings à l’autolaveuse et au Karcher.',
+  },
+  {
+    image: '/images/nettoyage-vitres-perche-eau-osmosee.jpg',
+    title: 'Nettoyage à l’eau osmosée',
+    description: 'Vitres et façades vitrées sans traces, en hauteur, depuis le sol.',
+  },
+  {
+    image: '/images/nettoyage-bureaux.jpeg',
+    title: 'Bâtiments & résidentiel collectif',
+    description: 'Bureaux, résidences étudiantes et espaces événementiels.',
+  },
+];
+
+const stats = [
+  { value: '20+', label: "ans d'expertise" },
+  { value: '100%', label: 'Belgique couverte' },
+  { value: 'VCA · ISO 9000', label: 'certifications' },
+  { value: '24h', label: 'délai de réponse devis' },
+];
+
+const references = [
+  {
+    name: "Hôtel Wiltcher's — Avenue Louise, Bruxelles",
+    logo: '/images/logo-wiltchers-wordmark.png',
+    photos: ['/images/wiltchers-nuit-camion-bcf.jpg', '/images/wiltchers-facade-nuit-entree.jpg'],
+  },
+  {
+    name: 'Aston Martin Zaventem',
+    logo: '/images/logo-aston-martin-wordmark.png',
+    photos: [
+      '/images/aston-martin-zaventem.jpg',
+      '/images/aston-martin-zaventem-3.jpg',
+      '/images/aston-martin-zaventem-4.jpg',
+      '/images/aston-martin-zaventem-5.jpg',
+      '/images/aston-martin-zaventem-6.jpg',
+    ],
+  },
+  {
+    name: 'VUB',
+    logo: '/images/logo-vub.svg',
+    photos: [
+      '/images/nettoyage-vitres-campus-universitaire.jpg',
+      '/images/vub-campus-1.jpg',
+      '/images/vub-campus-2.jpg',
+      '/images/vub-campus-3.jpg',
+    ],
+  },
+  { name: 'KU Leuven', logo: '/images/logo-kuleuven.svg' },
+  { name: 'Van Mossel', logo: '/images/logo-vanmossel.png' },
+  { name: 'SONOCO', logo: '/images/logo-sonoco.svg' },
+  { name: 'Casino Resort Namur', logo: '/images/logo-casino-namur.png' },
+  { name: 'Ibis Hotel', logo: '/images/logo-ibis.png' },
+  { name: 'Vlaamse Overheid', logo: '/images/logo-vlaamse-overheid.png' },
+  { name: 'Sanofi', logo: '/images/logo-sanofi.png' },
+  { name: 'Johnson & Johnson', logo: '/images/logo-jnj.png' },
+  { name: 'FedEx', logo: '/images/logo-fedex.png' },
+  { name: 'Fluvius', logo: '/images/logo-fluvius.png' },
+  { name: 'Becton Dickinson', logo: '/images/logo-becton-dickinson.png' },
+  { name: 'Amcor', logo: '/images/logo-amcor.png' },
+  { name: 'Aveve', logo: '/images/logo-aveve.png' },
+  { name: 'De Lijn', logo: '/images/logo-delijn.png' },
+  { name: 'Colac', logo: '/images/logo-colac.png' },
+  { name: 'Solidaris', logo: '/images/logo-solidaris.png' },
+];
+
+const equipment = [
+  { icon: 'truck', label: 'Camion élévateur' },
+  { icon: 'building', label: 'Élévateur ciseau' },
+  { icon: 'droplet', label: 'Camion Karcher haute pression' },
+  { icon: 'spark', label: 'Autolaveuse grande surface' },
+  { icon: 'pole', label: "Système d'eau osmosée" },
+  { icon: 'blaster', label: 'Sableuse IBIX (nettoyage graffitis)' },
+  { icon: 'steam', label: 'Machine à vapeur' },
+  { icon: 'carpet', label: 'Nettoyage tapis injection/extraction' },
+];
+---
+
+<Base
+  locale={locale}
+  page="home"
+  title="BCF — Nettoyage professionnel pour entreprises en Belgique"
+  description="Belgium Cleaning Facilities : nettoyage industriel, tertiaire et de façades pour entreprises, dans toute la Belgique. Depuis 1998, certifié VCA & ISO 9000."
+>
+  <Hero
+    image="/images/hero-facade-vitree-bleue.jpg"
+    eyebrow="Spécialiste du nettoyage professionnel"
+    title="Le nettoyage professionnel de vos sites, sans compromis."
+    subtitle="Vitres, façades, sols industriels et nettoyage à l'eau osmosée — partout en Belgique."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    secondaryLabel="Découvrir nos services"
+    secondaryHref={path('services', locale)}
+  />
+
+  <StatBanner stats={stats} />
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading
+      eyebrow="Nos prestations"
+      title="Tout type de nettoyage, un seul interlocuteur"
+      description="Une équipe et un matériel adaptés à chaque configuration."
+    />
+    <div data-reveal-group class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((s) => (
+        <ServiceCard image={s.image} title={s.title} description={s.description} href={path('services', locale)} linkLabel="En savoir plus" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ink-900 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Ils nous font confiance"
+        title="Une expertise reconnue par de grands noms"
+        description="Depuis 1998, au service de sites industriels, hôtels de prestige et campus universitaires en Belgique."
+        light
+      />
+      <div class="marquee-wrap mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+        <div class="marquee-track flex w-max gap-4">
+          {[...references, ...references].map((r, i) => {
+            const duplicate = i >= references.length;
+            const inner = r.logo ? (
+              <img src={r.logo} alt={r.name} class="h-9 max-w-[85%] object-contain sm:h-10" loading="lazy" />
+            ) : (
+              <span class="text-sm font-semibold text-ink-900">{r.name}</span>
+            );
+            return r.photos ? (
+              <button
+                type="button"
+                tabindex={duplicate ? -1 : 0}
+                aria-hidden={duplicate ? 'true' : undefined}
+                data-gallery-photos={JSON.stringify(r.photos)}
+                data-gallery-title={r.name}
+                class="group flex w-44 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-white px-4 py-6 text-center shadow-sm shadow-black/5 transition-transform hover:-translate-y-0.5 hover:shadow-md sm:w-52"
+              >
+                {inner}
+                <span class="flex items-center gap-1 text-xs font-medium text-brand-600 opacity-80 transition-opacity group-hover:opacity-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h3l2-2h6l2 2h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1z" />
+                    <circle cx="12" cy="13" r="3.2" />
+                  </svg>
+                  Voir les photos
+                </span>
+              </button>
+            ) : (
+              <div aria-hidden={duplicate ? 'true' : undefined} class="flex w-44 shrink-0 items-center justify-center rounded-xl bg-white px-4 py-6 text-center shadow-sm shadow-black/5 sm:w-52">
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <PhotoLightbox closeLabel="Fermer" prevLabel="Précédent" nextLabel="Suivant" />
+      <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-brand-200">
+        Partenaire sous-traitant de GOM, Vebego et Group F en Belgique.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading
+      eyebrow="Notre matériel"
+      title="Un équipement professionnel pour chaque chantier"
+      description="Adapté pour intervenir en toute sécurité, à toute hauteur."
+    />
+    <div data-reveal-group class="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
+      {equipment.map((e) => (
+        <div data-reveal class="flex flex-col items-center gap-3 rounded-2xl border border-ink-900/5 bg-brand-50 p-6 text-center">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-600 text-white">
+            <Icon name={e.icon} class="h-6 w-6" />
+          </div>
+          <p class="text-sm font-semibold text-ink-900">{e.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTABanner
+    title="Un projet de nettoyage à nous confier ?"
+    description="Décrivez-nous votre besoin, nous revenons vers vous sous 24h."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

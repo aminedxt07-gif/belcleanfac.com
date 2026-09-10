@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import SectorCard from '../../components/SectorCard.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { path, UI } from '../../i18n/config';
+
+const locale = 'en' as const;
+const t = UI[locale];
+
+const sectors = [
+  {
+    image: '/images/usine-autolaveuse-entrepot.jpg',
+    title: 'Industry & logistics',
+    description: 'Cleaning of production sites, warehouses and logistics facilities: floors, facades, dust removal in production units.',
+    reference: 'Including SONOCO',
+  },
+  {
+    image: '/images/aston-martin-zaventem.jpg',
+    title: 'Automotive',
+    description: 'Facade and floor upkeep for high-end dealerships and showrooms.',
+    reference: 'Aston Martin Zaventem · Van Mossel',
+  },
+  {
+    image: '/images/nettoyage-vitres-campus-universitaire.jpg',
+    title: 'Higher education',
+    description: 'Cleaning of student housing and university buildings, in occupied premises.',
+    reference: 'KU Leuven · VUB',
+  },
+  {
+    image: '/images/wiltchers-nuit-camion-bcf.jpg',
+    title: 'Prestige hospitality',
+    description: 'Facade upkeep for high-end establishments in the city centre.',
+    reference: "Hotel Wiltcher's — Avenue Louise, Brussels",
+  },
+  {
+    image: '/images/image-surface-parking-propre-1.jpeg',
+    title: 'Museums & event venues',
+    description: 'Cleaning of floors and large surfaces for cultural and event venues welcoming the public.',
+  },
+  {
+    image: '/images/gom-nettoyage-sol-garage.jpg',
+    title: 'Subcontracting for major groups',
+    description: 'A trusted subcontracting partner for industrial and commercial cleaning assignments across Belgium.',
+    reference: 'GOM · Vebego · Group F',
+  },
+];
+---
+
+<Base
+  locale={locale}
+  page="sectors"
+  title="Sectors & references — BCF Professional cleaning"
+  description="Since 1998, serving industry, automotive, higher education, prestige hospitality and the major cleaning groups in Belgium."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Sectors & references"
+        title="Expertise that adapts to every environment"
+        description="From industrial sites to prestige hotels, via university campuses: our teams work in demanding environments, with discretion and safety."
+        light
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sectors.map((s) => (
+        <SectorCard image={s.image} title={s.title} description={s.description} reference={s.reference} />
+      ))}
+    </div>
+  </section>
+
+  <CTABanner
+    title="Your sector isn't listed?"
+    description="We work on virtually every type of professional site. Let's talk about your project."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

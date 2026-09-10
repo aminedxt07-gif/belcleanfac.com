@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe7ff;
+  --color-brand-200: #b7cfff;
+  --color-brand-300: #85adff;
+  --color-brand-400: #4f82fb;
+  --color-brand-500: #235aef;
+  --color-brand-600: #1747d6;
+  --color-brand-700: #1339ab;
+  --color-brand-800: #122f84;
+  --color-brand-900: #102763;
+  --color-brand-950: #0a1740;
+
+  --color-ink-900: #0b1220;
+  --color-ink-700: #2a3446;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-enter {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+}
+.hero-image-enter {
+  animation: hero-image-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-enter-1 { animation-delay: 0.05s; }
+.hero-enter-2 { animation-delay: 0.18s; }
+.hero-enter-3 { animation-delay: 0.31s; }
+.hero-enter-4 { animation-delay: 0.44s; }
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal-group] > [data-reveal]:nth-child(2) { transition-delay: 0.08s; }
+[data-reveal-group] > [data-reveal]:nth-child(3) { transition-delay: 0.16s; }
+[data-reveal-group] > [data-reveal]:nth-child(4) { transition-delay: 0.24s; }
+[data-reveal-group] > [data-reveal]:nth-child(5) { transition-delay: 0.32s; }
+[data-reveal-group] > [data-reveal]:nth-child(6) { transition-delay: 0.4s; }
+
+.prose-legal h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-ink-900);
+}
+.prose-legal h2:first-child {
+  margin-top: 0;
+}
+.prose-legal h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-ink-900);
+}
+.prose-legal p {
+  margin-top: 0.75rem;
+  line-height: 1.75;
+  color: var(--color-ink-700);
+}
+.prose-legal ul {
+  margin-top: 0.75rem;
+  margin-left: 1.25rem;
+  list-style: disc;
+  color: var(--color-ink-700);
+}
+.prose-legal li {
+  margin-top: 0.375rem;
+  line-height: 1.6;
+}
+.prose-legal a {
+  color: var(--color-brand-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-legal strong {
+  color: var(--color-ink-900);
+  font-weight: 600;
+}
+.prose-legal .legal-updated {
+  color: var(--color-ink-700);
+  font-size: 0.875rem;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-image-enter,
+  [data-reveal] {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-image-enter {
+    opacity: 0.45 !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+  .marquee-wrap {
+    overflow-x: auto !important;
+  }
+}

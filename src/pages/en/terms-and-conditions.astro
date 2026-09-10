@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalHero from '../../components/LegalHero.astro';
+import { COMPANY, path } from '../../i18n/config';
+
+const locale = 'en' as const;
+---
+
+<Base
+  locale={locale}
+  page="terms"
+  title="Terms and conditions — Belgium Cleaning Facilities"
+  description="General terms of service of Belgium Cleaning Facilities (BCF) for its business clients."
+>
+  <LegalHero eyebrow="Terms and conditions" title="General terms of service" updated="Last updated: 1 September 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>1. Purpose and scope</h2>
+    <p>
+      These general terms govern the business relationship between <strong>{COMPANY.legalName}</strong> ("BCF"),
+      {COMPANY.address}, and its business clients, for any cleaning service ordered on the basis of an accepted
+      quote. BCF does not work with private individuals.
+    </p>
+
+    <h2>2. Quotes and orders</h2>
+    <p>
+      Any quote issued by BCF is free of charge and valid for 30 days from its issue date, unless stated otherwise.
+      An order is considered firm once the client accepts the quote in writing (signature, confirmation email, or
+      purchase order).
+    </p>
+
+    <h2>3. Performance of services</h2>
+    <p>
+      BCF undertakes to perform the services with the care and diligence of a professional in the sector, in
+      compliance with applicable safety standards, in particular VCA certification. Stated intervention timelines
+      are indicative and may be adjusted depending on site access conditions, weather conditions (for outdoor or
+      high-level work) or force majeure.
+    </p>
+
+    <h2>4. Client obligations</h2>
+    <p>
+      The client undertakes to provide safe and compliant access to the intervention site, to notify BCF in advance
+      of any specific constraints (sensitive areas, specific hours, required permits or clearances), and, where
+      applicable, to provide the water and electricity points needed to carry out the service.
+    </p>
+
+    <h2>5. Pricing and payment</h2>
+    <p>
+      Prices are stated in euros, excluding VAT unless stated otherwise. Unless otherwise agreed in the quote,
+      invoices are payable within 30 calendar days of the invoice date. Late payment may give rise to late-payment
+      interest and a fixed compensation fee, in accordance with Belgian legislation on combating late payment in
+      commercial transactions.
+    </p>
+
+    <h2>6. Insurance and liability</h2>
+    <p>
+      BCF holds professional civil liability insurance covering its cleaning activities. BCF's liability may only be
+      engaged in the event of proven fault in the performance of the services, and is limited to direct damages,
+      excluding any indirect or immaterial damage.
+    </p>
+
+    <h2>7. Recurring maintenance contracts</h2>
+    <p>
+      For recurring maintenance services covered by a contract, either party may terminate it subject to the
+      written notice period agreed in the contract or, failing that, a reasonable notice period of at least 30
+      days.
+    </p>
+
+    <h2>8. Complaints</h2>
+    <p>
+      Any complaint relating to a service must be sent to BCF in writing, within a reasonable time following
+      performance of the relevant service, to <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>9. Applicable law and disputes</h2>
+    <p>
+      These general terms are governed by Belgian law. Any dispute relating to their interpretation or performance
+      falls under the exclusive jurisdiction of the courts of the judicial district of BCF's registered office,
+      subject to any mandatory legal provisions to the contrary.
+    </p>
+
+    <p>
+      See also our <a href={path('legal', locale)}>legal notice</a> and our
+      <a href={path('privacy', locale)}>privacy policy</a>.
+    </p>
+  </article>
+</Base>

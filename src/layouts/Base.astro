@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { PATHS, type Locale, type PageKey } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+  title: string;
+  description: string;
+}
+
+const { locale, page, title, description } = Astro.props;
+const site = Astro.site?.origin ?? 'https://belcleanfac.com';
+const htmlLang = locale;
+---
+
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={new URL(PATHS[page][locale], site).toString()} />
+    <link rel="alternate" hreflang="fr" href={new URL(PATHS[page].fr, site).toString()} />
+    <link rel="alternate" hreflang="nl" href={new URL(PATHS[page].nl, site).toString()} />
+    <link rel="alternate" hreflang="en" href={new URL(PATHS[page].en, site).toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL(PATHS[page].fr, site).toString()} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Belgium Cleaning Facilities" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_BE' : locale === 'nl' ? 'nl_BE' : 'en_GB'} />
+    <meta property="og:image" content={new URL('/images/bcf-camion-nacelle-facade-brique.jpg', site).toString()} />
+
+    <link rel="icon" type="image/png" href="/images/logo-bcf.png" />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-white text-ink-900 antialiased">
+    <Header locale={locale} page={page} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+
+    <script>
+      const targets = document.querySelectorAll('[data-reveal]');
+      if (targets.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+  phoneLabel: string;
+  phone: string;
+}
+
+const { title, description, ctaLabel, ctaHref, phoneLabel, phone } = Astro.props;
+---
+
+<section class="bg-brand-700">
+  <div class="mx-auto flex max-w-7xl flex-col items-start gap-6 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+    <div>
+      <h2 class="text-2xl font-bold text-white sm:text-3xl">{title}</h2>
+      <p class="mt-2 max-w-xl text-brand-100">{description}</p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <a href={ctaHref} class="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-800 shadow-lg transition-transform hover:-translate-y-0.5">
+        {ctaLabel}
+      </a>
+      <a href={`tel:${phone.replace(/\s/g, '')}`} class="rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+        {phoneLabel}
+      </a>
+    </div>
+  </div>
+</section>

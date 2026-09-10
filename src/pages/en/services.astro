@@ -1,0 +1,124 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import AltSection from '../../components/AltSection.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { path, UI } from '../../i18n/config';
+
+const locale = 'en' as const;
+const t = UI[locale];
+---
+
+<Base
+  locale={locale}
+  page="services"
+  title="Our professional cleaning services — BCF"
+  description="High-level windows and facades, industrial floors, reverse-osmosis water cleaning, building cleaning: discover BCF's full range of professional cleaning services."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Our services"
+        title="Complete know-how in professional cleaning"
+        description="Since 1998, BCF has worked on every type of site for businesses: high-level windows and facades, industrial floors, reverse-osmosis water cleaning and building upkeep, throughout Belgium."
+        light
+      />
+    </div>
+  </section>
+
+  <AltSection
+    id="vitres-facades"
+    image="/images/vitres-facade-nacelle-chenilles.jpg"
+    eyebrow="Windows & facades"
+    title="Spotless cleaning, even at height"
+    description="We clean windows with professional equipment suited to every configuration: telescopic poles and reverse-osmosis water systems for a streak-free finish, cherry pickers and boom trucks for complex access."
+    points={[
+      'Frame and surround washing included',
+      'High-level facade stripping (brick, stone, concrete)',
+      'Moss removal and roof cleaning',
+      'Graffiti removal with gentle stripping techniques',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Real results"
+        title="Before / after: industrial facade cleaning"
+        description="Drag the slider to compare."
+      />
+      <div class="mt-12">
+        <BeforeAfter
+          before="/images/facade-avant-nettoyage.jpg"
+          after="/images/facade-apres-nettoyage.jpg"
+          beforeLabel="Before"
+          afterLabel="After"
+        />
+      </div>
+    </div>
+  </section>
+
+  <AltSection
+    id="surfaces"
+    image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
+    eyebrow="Floors & large surfaces"
+    title="Industrial cleaning of floors and large surfaces"
+    description="Large-surface scrubbers and high-pressure equipment for maintaining warehouse floors, indoor and outdoor car parks, and commercial and administrative spaces."
+    points={[
+      'Degreasing and upkeep of concrete floors',
+      'Warehouses, industrial halls and production areas',
+      'Car parks and parking areas, indoor and outdoor',
+      'Offices and commercial & administrative spaces',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="osmose"
+    image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
+    eyebrow="Reverse-osmosis water cleaning"
+    title="Streak-free windows, even at height, with no chemicals"
+    description="Our reverse-osmosis (demineralised) water system removes limescale and residue for a spotless, long-lasting result. Combined with telescopic poles, it lets us clean windows, conservatories and glass facades at height straight from the ground, with no cherry picker or scaffolding needed."
+    points={[
+      'Reverse-osmosis / demineralised water: no streaks, no limescale',
+      'Telescopic poles reaching several dozen metres from the ground',
+      'Detergent-free cleaning, safe for sensitive surfaces',
+      'Ideal for shopfronts, conservatories, canopies and hard-to-reach glass facades',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="batiments"
+    image="/images/autolaveuse-hall-musee-evenementiel.jpg"
+    eyebrow="Buildings & collective residential"
+    title="Upkeep of commercial, residential and event buildings"
+    description="We handle regular or one-off upkeep of offices, student housing, museums and event venues, with teams trained for the requirements of each environment."
+    points={[
+      'Offices and commercial buildings',
+      'Student housing and collective residences',
+      'Museums and event venues',
+      'Regular upkeep or one-off cleaning after construction work',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <CTABanner
+    title="A tailored service for your site"
+    description="Every site is different: let's talk about your needs to build an offer that fits."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

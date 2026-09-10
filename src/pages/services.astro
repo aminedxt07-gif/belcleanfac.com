@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import AltSection from '../components/AltSection.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { path, UI } from '../i18n/config';
+
+const locale = 'fr' as const;
+const t = UI[locale];
+---
+
+<Base
+  locale={locale}
+  page="services"
+  title="Nos services de nettoyage professionnel — BCF"
+  description="Vitres et façades en hauteur, sols industriels, nettoyage à l'eau osmosée, nettoyage de bâtiments : découvrez l'ensemble des prestations de nettoyage professionnel de BCF."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Nos services"
+        title="Un savoir-faire complet en nettoyage professionnel"
+        description="Depuis 1998, BCF intervient sur tout type de site pour les entreprises : vitres et façades en hauteur, sols industriels, nettoyage à l'eau osmosée et entretien de bâtiments, partout en Belgique."
+        light
+      />
+    </div>
+  </section>
+
+  <AltSection
+    id="vitres-facades"
+    image="/images/vitres-facade-nacelle-chenilles.jpg"
+    eyebrow="Vitres & façades"
+    title="Un nettoyage impeccable, même en hauteur"
+    description="Nous réalisons le nettoyage de vitres avec du matériel professionnel adapté à chaque configuration : manches télescopiques et systèmes à eau osmosée pour un résultat sans traces, nacelles et camion élévateur pour les accès complexes."
+    points={[
+      'Lessivage des châssis et encadrements inclus',
+      "Décapage de façades en hauteur (briques, pierre, béton)",
+      'Démoussage et nettoyage de toitures',
+      'Enlèvement de graffitis et techniques de décapage douces',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Résultat concret"
+        title="Avant / après : nettoyage de façade industrielle"
+        description="Faites glisser le curseur pour comparer."
+      />
+      <div class="mt-12">
+        <BeforeAfter
+          before="/images/facade-avant-nettoyage.jpg"
+          after="/images/facade-apres-nettoyage.jpg"
+          beforeLabel="Avant"
+          afterLabel="Après"
+        />
+      </div>
+    </div>
+  </section>
+
+  <AltSection
+    id="surfaces"
+    image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
+    eyebrow="Sols & grandes surfaces"
+    title="Nettoyage industriel de sols et grandes surfaces"
+    description="Autolaveuses grande surface et matériel haute pression pour l'entretien de sols d'entrepôts, de parkings intérieurs et extérieurs, et d'espaces tertiaires et administratifs."
+    points={[
+      "Dégraissage et entretien des sols béton",
+      'Entrepôts, halls industriels et zones de production',
+      'Parkings et zones de stationnement, intérieurs et extérieurs',
+      'Bureaux et espaces tertiaires & administratifs',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="osmose"
+    image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
+    eyebrow="Nettoyage à l'eau osmosée"
+    title="Des vitres sans traces, même en hauteur, sans produits chimiques"
+    description="Notre système de nettoyage à l'eau osmosée (déminéralisée) élimine le calcaire et les résidus pour un résultat impeccable et durable. Couplé à des perches télescopiques, il permet de nettoyer vitres, vérandas et façades vitrées en hauteur directement depuis le sol, sans nacelle ni échafaudage."
+    points={[
+      'Eau osmosée / déminéralisée : zéro trace, zéro résidu calcaire',
+      "Perches télescopiques jusqu'à plusieurs dizaines de mètres depuis le sol",
+      'Nettoyage sans détergent, sans danger pour les surfaces sensibles',
+      'Idéal pour vitrines, vérandas, auvents et façades vitrées difficiles d’accès',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="batiments"
+    image="/images/autolaveuse-hall-musee-evenementiel.jpg"
+    eyebrow="Bâtiments & résidentiel collectif"
+    title="Entretien de bâtiments tertiaires, résidentiels et événementiels"
+    description="Nous assurons l'entretien régulier ou ponctuel de bureaux, résidences étudiantes, musées et bâtiments événementiels, avec des équipes formées aux exigences de chaque environnement."
+    points={[
+      'Bureaux et immeubles tertiaires',
+      'Résidences étudiantes et logements collectifs',
+      'Musées et bâtiments événementiels',
+      'Entretien régulier ou nettoyage ponctuel après chantier',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <CTABanner
+    title="Une prestation sur-mesure pour votre site"
+    description="Chaque site est différent : parlons de vos besoins pour construire une offre adaptée."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

@@ -1,0 +1,221 @@
+---
+import { NAV_LABELS, PATHS, UI, LOCALE_LABELS, LOCALES, path, type Locale, type PageKey } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+}
+
+const { locale, page } = Astro.props;
+const nav = NAV_LABELS[locale];
+const t = UI[locale];
+const pages: PageKey[] = ['home', 'services', 'sectors', 'about'];
+---
+
+<header class="site-header fixed inset-x-0 top-0 z-50">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href={path('home', locale)} class="flex items-center gap-3 shrink-0">
+      <img src="/images/logo-bcf.png" alt="Belgium Cleaning Facilities" class="h-10 w-10 shrink-0" />
+      <span class="site-title hidden text-lg font-bold tracking-tight sm:block">
+        Belgium Cleaning Facilities
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex">
+      {pages.map((p) => (
+        <a
+          href={path(p, locale)}
+          class:list={['nav-link text-sm font-medium', page === p ? 'nav-link-active' : '']}
+          aria-current={page === p ? 'page' : undefined}
+        >
+          {nav[p]}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex">
+      <div class="lang-switch flex items-center gap-1 rounded-full border p-1 text-xs font-semibold">
+        {LOCALES.map((l) => (
+          <a
+            href={PATHS[page][l]}
+            class:list={['lang-pill rounded-full px-2.5 py-1', l === locale ? 'lang-pill-active' : '']}
+          >
+            {LOCALE_LABELS[l]}
+          </a>
+        ))}
+      </div>
+      <a
+        href={path('contact', locale)}
+        class="rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-brand-600/30 transition-colors hover:bg-brand-700"
+      >
+        {t.ctaQuote}
+      </a>
+    </div>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-label="Menu"
+      aria-expanded="false"
+      class="menu-btn flex h-10 w-10 items-center justify-center rounded-lg border lg:hidden"
+    >
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="menu-icon h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="menu-icon hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-brand-900/5 bg-white lg:hidden">
+    <div class="space-y-1 px-4 py-4">
+      {pages.map((p) => (
+        <a
+          href={path(p, locale)}
+          class:list={[
+            'block rounded-lg px-3 py-2.5 text-base font-medium',
+            page === p ? 'bg-brand-50 text-brand-600' : 'text-ink-700',
+          ]}
+        >
+          {nav[p]}
+        </a>
+      ))}
+      <div class="flex items-center gap-2 px-3 pt-2">
+        {LOCALES.map((l) => (
+          <a
+            href={PATHS[page][l]}
+            class:list={[
+              'rounded-full border px-3 py-1 text-xs font-semibold',
+              l === locale ? 'border-brand-600 bg-brand-600 text-white' : 'border-brand-900/10 text-ink-700',
+            ]}
+          >
+            {LOCALE_LABELS[l]}
+          </a>
+        ))}
+      </div>
+      <a
+        href={path('contact', locale)}
+        class="mt-3 block rounded-lg bg-brand-600 px-4 py-3 text-center text-base font-semibold text-white"
+      >
+        {t.ctaQuote}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .site-header.is-solid {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom-color: rgba(16, 39, 99, 0.08);
+    box-shadow: 0 1px 2px rgba(16, 39, 99, 0.04);
+  }
+
+  .site-title {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  .site-header.is-solid .site-title {
+    color: var(--color-brand-900);
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.92);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: #fff;
+  }
+  .nav-link.nav-link-active {
+    color: #fff;
+    font-weight: 700;
+  }
+  .site-header.is-solid .nav-link {
+    color: var(--color-ink-700);
+  }
+  .site-header.is-solid .nav-link:hover {
+    color: var(--color-brand-600);
+  }
+  .site-header.is-solid .nav-link.nav-link-active {
+    color: var(--color-brand-600);
+  }
+
+  .lang-switch {
+    border-color: rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease;
+  }
+  .site-header.is-solid .lang-switch {
+    border-color: rgba(16, 39, 99, 0.1);
+  }
+
+  .lang-pill {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  .lang-pill:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .lang-pill.lang-pill-active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  .site-header.is-solid .lang-pill {
+    color: var(--color-ink-700);
+  }
+  .site-header.is-solid .lang-pill:hover {
+    background: var(--color-brand-50);
+  }
+  .site-header.is-solid .lang-pill.lang-pill-active {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+
+  .menu-btn {
+    border-color: rgba(255, 255, 255, 0.35);
+    transition: border-color 0.3s ease;
+  }
+  .menu-icon {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  .site-header.is-solid .menu-btn {
+    border-color: rgba(16, 39, 99, 0.1);
+  }
+  .site-header.is-solid .menu-icon {
+    color: var(--color-ink-900);
+  }
+</style>
+
+<script>
+  const header = document.querySelector('.site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  const syncSolidState = () => {
+    if (!header) return;
+    const menuOpen = toggle?.getAttribute('aria-expanded') === 'true';
+    header.classList.toggle('is-solid', window.scrollY > 24 || menuOpen);
+  };
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+    syncSolidState();
+  });
+
+  window.addEventListener('scroll', syncSolidState, { passive: true });
+  syncSolidState();
+</script>

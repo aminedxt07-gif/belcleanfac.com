@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SectorCard from '../components/SectorCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { path, UI } from '../i18n/config';
+
+const locale = 'fr' as const;
+const t = UI[locale];
+
+const sectors = [
+  {
+    image: '/images/usine-autolaveuse-entrepot.jpg',
+    title: 'Industrie & logistique',
+    description:
+      "Nettoyage de sites de production, entrepôts et sites logistiques : sols, façades, dépoussiérage d'unités de production.",
+    reference: 'Dont SONOCO',
+  },
+  {
+    image: '/images/aston-martin-zaventem.jpg',
+    title: 'Automobile',
+    description: 'Entretien de façades et de sols pour concessions et show-rooms haut de gamme.',
+    reference: 'Aston Martin Zaventem · Van Mossel',
+  },
+  {
+    image: '/images/nettoyage-vitres-campus-universitaire.jpg',
+    title: 'Enseignement supérieur',
+    description: "Nettoyage de résidences étudiantes et de bâtiments universitaires, en site occupé.",
+    reference: 'KU Leuven · VUB',
+  },
+  {
+    image: '/images/wiltchers-nuit-camion-bcf.jpg',
+    title: 'Hôtellerie de prestige',
+    description: "Entretien de façade pour des établissements haut de gamme en plein centre-ville.",
+    reference: "Hôtel Wiltcher's — Avenue Louise, Bruxelles",
+  },
+  {
+    image: '/images/image-surface-parking-propre-1.jpeg',
+    title: 'Musées & bâtiments événementiels',
+    description:
+      'Nettoyage de sols et grandes surfaces pour des lieux culturels et événementiels accueillant du public.',
+  },
+  {
+    image: '/images/gom-nettoyage-sol-garage.jpg',
+    title: 'Sous-traitance pour grands groupes',
+    description:
+      'Partenaire sous-traitant de confiance pour des missions de nettoyage industriel et tertiaire partout en Belgique.',
+    reference: 'GOM · Vebego · Group F',
+  },
+];
+---
+
+<Base
+  locale={locale}
+  page="sectors"
+  title="Secteurs & références — BCF Nettoyage professionnel"
+  description="Depuis 1998 au service de l'industrie, l'automobile, l'enseignement supérieur, l'hôtellerie de prestige et les grands groupes de nettoyage en Belgique."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Secteurs & références"
+        title="Une expertise qui s'adapte à chaque environnement"
+        description="Des sites industriels aux hôtels de prestige, en passant par les campus universitaires : nos équipes interviennent sur des environnements exigeants, en toute discrétion et sécurité."
+        light
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sectors.map((s) => (
+        <SectorCard image={s.image} title={s.title} description={s.description} reference={s.reference} />
+      ))}
+    </div>
+  </section>
+
+  <CTABanner
+    title="Votre secteur n'est pas listé ?"
+    description="Nous intervenons sur pratiquement tout type de site professionnel. Parlons de votre projet."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

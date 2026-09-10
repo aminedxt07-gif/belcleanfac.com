@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Icon from '../components/Icon.astro';
+import { UI } from '../i18n/config';
+
+const locale = 'fr' as const;
+const t = UI[locale];
+const mapSrc =
+  'https://www.openstreetmap.org/export/embed.html?bbox=4.2938621%2C51.0048935%2C4.3038621%2C51.0108935&layer=mapnik&marker=51.0078935%2C4.2988621';
+const googleMapsHref = 'https://www.google.com/maps/search/?api=1&query=Kasteelstraat+16A%2C+1840+Londerzeel%2C+Belgium';
+---
+
+<Base
+  locale={locale}
+  page="contact"
+  title="Contact & devis — BCF Nettoyage professionnel"
+  description="Contactez Belgium Cleaning Facilities pour une demande de devis de nettoyage professionnel. Réponse sous 24h ouvrées, dans toute la Belgique."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Parlons de votre projet de nettoyage"
+        description="Que ce soit pour un entretien régulier ou une intervention ponctuelle, notre équipe vous répond rapidement avec une offre adaptée à votre site."
+        light
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <QuoteForm locale={locale} />
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+              <Icon name="droplet" class="h-5 w-5" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Email</p>
+              <a href={`mailto:${t.email}`} class="text-sm text-ink-700 hover:text-brand-600">{t.email}</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+              <Icon name="spark" class="h-5 w-5" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Téléphone</p>
+              <a href={`tel:${t.phone1.replace(/\s/g, '')}`} class="block text-sm text-ink-700 hover:text-brand-600">{t.phone1}</a>
+              <a href={`tel:${t.phone2.replace(/\s/g, '')}`} class="block text-sm text-ink-700 hover:text-brand-600">{t.phone2}</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+              <Icon name="building" class="h-5 w-5" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Adresse</p>
+              <p class="text-sm text-ink-700">{t.address}</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+              <Icon name="map" class="h-5 w-5" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-900">Zone d'intervention</p>
+              <p class="text-sm text-ink-700">{t.coverage}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 overflow-hidden rounded-2xl border border-ink-900/10">
+          <iframe
+            src={mapSrc}
+            class="h-72 w-full"
+            style="border:0"
+            loading="lazy"
+            title="Localisation BCF — Kasteelstraat 16A, Londerzeel"
+          ></iframe>
+          <a
+            href={googleMapsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 border-t border-ink-900/10 bg-white px-4 py-3 text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-50"
+          >
+            Ouvrir dans Google Maps
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

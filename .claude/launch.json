@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bcf-website",
+      "runtimeExecutable": "/Users/aminebrk/.local/bin/bcf-dev.sh",
+      "runtimeArgs": [],
+      "port": 4321
+    }
+  ]
+}

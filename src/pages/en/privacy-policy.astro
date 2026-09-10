@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalHero from '../../components/LegalHero.astro';
+import { COMPANY, path } from '../../i18n/config';
+
+const locale = 'en' as const;
+---
+
+<Base
+  locale={locale}
+  page="privacy"
+  title="Privacy policy — Belgium Cleaning Facilities"
+  description="How Belgium Cleaning Facilities collects, uses and protects your personal data, in line with the GDPR."
+>
+  <LegalHero eyebrow="GDPR" title="Privacy policy" updated="Last updated: 1 September 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>Data controller</h2>
+    <p>
+      <strong>{COMPANY.legalName}</strong>, {COMPANY.address}, is the data controller for personal data collected
+      through the belcleanfac.com website. For any question about your data, contact us at
+      <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>Data we collect</h2>
+    <p>This website only collects personal data if you voluntarily complete our quote/contact form:</p>
+    <ul>
+      <li>Full name</li>
+      <li>Company name</li>
+      <li>Business email address</li>
+      <li>Phone number (optional)</li>
+      <li>Type of service requested and the content of your message</li>
+    </ul>
+    <p>
+      We do not set any tracking, advertising or analytics cookies on this website. Our fonts are hosted directly on
+      our own server, and the location map uses OpenStreetMap: no data is sent to Google while browsing this
+      website.
+    </p>
+
+    <h2>Purpose of processing</h2>
+    <p>
+      Data submitted through the form is used exclusively to process your quote or contact request, get back to
+      you, and follow up commercially on your file. It is never used for unsolicited marketing or sold to third
+      parties.
+    </p>
+
+    <h2>Legal basis</h2>
+    <p>
+      Processing is based on your consent, expressed by voluntarily submitting the form, as well as on
+      {COMPANY.legalName}'s legitimate interest in responding to commercial enquiries addressed to it and, where
+      applicable, on the performance of pre-contractual steps taken at your request.
+    </p>
+
+    <h2>Recipients of your data</h2>
+    <p>
+      Your data is processed by the internal teams of {COMPANY.legalName}. Technical delivery of the contact form is
+      handled by <strong>Web3Forms</strong>, which acts as a processor under the GDPR solely for delivering the
+      email, and is not authorised to use your data for any other purpose.
+    </p>
+
+    <h2>Retention period</h2>
+    <p>
+      Your data is kept for as long as necessary to process your request, then for up to 3 years from our last
+      contact for commercial follow-up purposes, unless a longer retention period is required by law (in particular
+      for accounting and tax purposes).
+    </p>
+
+    <h2>Your rights</h2>
+    <p>Under the General Data Protection Regulation (GDPR), you have the following rights:</p>
+    <ul>
+      <li>Right of access to your data</li>
+      <li>Right to rectification of inaccurate data</li>
+      <li>Right to erasure of your data</li>
+      <li>Right to restriction of processing</li>
+      <li>Right to object to processing</li>
+      <li>Right to data portability</li>
+    </ul>
+    <p>
+      You may exercise these rights at any time by contacting us at
+      <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a>. You also have the right to lodge a complaint with
+      the Belgian Data Protection Authority (APD/GBA) —
+      <a href="https://www.dataprotectionauthority.be" target="_blank" rel="noopener noreferrer">
+        www.dataprotectionauthority.be
+      </a>.
+    </p>
+
+    <h2>Security</h2>
+    <p>
+      {COMPANY.legalName} implements reasonable technical and organisational measures to protect your data against
+      unauthorised access, loss or disclosure.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      This policy may be updated to reflect legal or technical changes. The date of the last update is shown at the
+      top of this page. See also our <a href={path('legal', locale)}>legal notice</a> and our
+      <a href={path('terms', locale)}>terms and conditions</a>.
+    </p>
+  </article>
+</Base>

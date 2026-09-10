@@ -1,0 +1,73 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  beforeLabel: string;
+  afterLabel: string;
+  caption?: string;
+}
+
+const { before, after, beforeLabel, afterLabel, caption } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 9);
+---
+
+<div class="mx-auto max-w-md">
+  <div
+    class="ba-widget relative aspect-[3/4] w-full touch-none select-none overflow-hidden rounded-3xl shadow-lg shadow-ink-900/10"
+    data-ba={uid}
+  >
+    <img src={after} alt={afterLabel} class="pointer-events-none absolute inset-0 h-full w-full object-cover" draggable="false" />
+    <img
+      src={before}
+      alt={beforeLabel}
+      class="ba-before pointer-events-none absolute inset-0 h-full w-full object-cover"
+      style="clip-path: inset(0 50% 0 0);"
+      draggable="false"
+    />
+
+    <span class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm">
+      {beforeLabel}
+    </span>
+    <span class="pointer-events-none absolute right-3 top-3 rounded-full bg-brand-600/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm">
+      {afterLabel}
+    </span>
+
+    <div class="ba-handle pointer-events-none absolute inset-y-0 flex w-0 -translate-x-1/2 items-center justify-center" style="left: 50%;">
+      <div class="h-full w-0.5 bg-white/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]"></div>
+      <div class="absolute flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+        </svg>
+      </div>
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      aria-label={`${beforeLabel} / ${afterLabel}`}
+      class="ba-range absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent opacity-0"
+    />
+  </div>
+  {caption && <p class="mt-3 text-center text-sm text-ink-700">{caption}</p>}
+</div>
+
+<script>
+  function initBeforeAfter(widget: Element) {
+    const range = widget.querySelector<HTMLInputElement>('.ba-range');
+    const beforeImg = widget.querySelector<HTMLElement>('.ba-before');
+    const handle = widget.querySelector<HTMLElement>('.ba-handle');
+    if (!range || !beforeImg || !handle) return;
+
+    const update = (value: number) => {
+      beforeImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
+    };
+
+    range.addEventListener('input', () => update(Number(range.value)));
+    update(Number(range.value));
+  }
+
+  document.querySelectorAll('.ba-widget').forEach(initBeforeAfter);
+</script>

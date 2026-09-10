@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalHero from '../../components/LegalHero.astro';
+import { COMPANY, path } from '../../i18n/config';
+
+const locale = 'nl' as const;
+---
+
+<Base
+  locale={locale}
+  page="terms"
+  title="Algemene voorwaarden — Belgium Cleaning Facilities"
+  description="Algemene voorwaarden voor dienstverlening van Belgium Cleaning Facilities (BCF) voor haar zakelijke klanten."
+>
+  <LegalHero eyebrow="Algemene voorwaarden" title="Algemene voorwaarden voor dienstverlening" updated="Laatst bijgewerkt: 1 september 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>1. Voorwerp en toepassingsgebied</h2>
+    <p>
+      Deze algemene voorwaarden regelen de commerciële relatie tussen <strong>{COMPANY.legalName}</strong> ("BCF"),
+      {COMPANY.address}, en haar zakelijke klanten, voor elke reinigingsdienst besteld op basis van een aanvaarde
+      offerte. BCF werkt niet met particulieren.
+    </p>
+
+    <h2>2. Offerte en bestelling</h2>
+    <p>
+      Elke door BCF opgestelde offerte is gratis en geldig gedurende 30 dagen vanaf de opmaakdatum, tenzij anders
+      vermeld. De bestelling wordt als definitief beschouwd zodra de klant de offerte schriftelijk aanvaardt
+      (handtekening, bevestigingsmail of bestelbon).
+    </p>
+
+    <h2>3. Uitvoering van de diensten</h2>
+    <p>
+      BCF verbindt zich ertoe de diensten uit te voeren met de zorg en toewijding van een vakspecialist, met
+      naleving van de geldende veiligheidsnormen, met name de VCA-certificering. De meegedeelde interventietermijnen
+      zijn indicatief en kunnen worden aangepast in functie van de toegangsvoorwaarden tot de site, de
+      weersomstandigheden (voor interventies buiten of op hoogte) of overmacht.
+    </p>
+
+    <h2>4. Verplichtingen van de klant</h2>
+    <p>
+      De klant verbindt zich ertoe een veilige en conforme toegang tot de interventiesite te waarborgen, elke
+      bijzondere beperking vooraf te melden (gevoelige zones, specifieke uren, vereiste vergunningen of
+      bevoegdheden) en, indien nodig, de nodige water- en elektriciteitspunten ter beschikking te stellen voor de
+      uitvoering van de dienst.
+    </p>
+
+    <h2>5. Tarieven en betaling</h2>
+    <p>
+      De prijzen zijn uitgedrukt in euro, exclusief btw tenzij anders vermeld. Tenzij anders overeengekomen in de
+      offerte, zijn facturen betaalbaar binnen 30 kalenderdagen na de factuurdatum. Elke laattijdige betaling kan
+      aanleiding geven tot verwijlintresten en een forfaitaire vergoeding, conform de Belgische wetgeving inzake de
+      bestrijding van betalingsachterstand bij handelstransacties.
+    </p>
+
+    <h2>6. Verzekering en aansprakelijkheid</h2>
+    <p>
+      BCF beschikt over een beroepsaansprakelijkheidsverzekering die haar reinigingsactiviteiten dekt. De
+      aansprakelijkheid van BCF kan enkel worden ingeroepen bij bewezen fout in de uitvoering van de diensten, en is
+      beperkt tot rechtstreekse schade, met uitsluiting van elke onrechtstreekse of immateriële schade.
+    </p>
+
+    <h2>7. Regelmatige onderhoudscontracten</h2>
+    <p>
+      Voor regelmatige onderhoudsdiensten die het voorwerp uitmaken van een contract, kan dit door beide partijen
+      worden opgezegd mits de in het contract overeengekomen schriftelijke opzegtermijn, of bij gebrek daaraan, een
+      redelijke opzegtermijn van minstens 30 dagen.
+    </p>
+
+    <h2>8. Klachten</h2>
+    <p>
+      Elke klacht met betrekking tot een dienst moet schriftelijk aan BCF worden gericht, binnen een redelijke
+      termijn na uitvoering van de betreffende dienst, via <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>9. Toepasselijk recht en geschillen</h2>
+    <p>
+      Deze algemene voorwaarden zijn onderworpen aan het Belgisch recht. Elk geschil met betrekking tot hun
+      interpretatie of uitvoering valt onder de exclusieve bevoegdheid van de rechtbanken van het gerechtelijk
+      arrondissement van de maatschappelijke zetel van BCF, behoudens dwingende wettelijke bepalingen die anders
+      voorschrijven.
+    </p>
+
+    <p>
+      Zie ook onze <a href={path('legal', locale)}>wettelijke vermeldingen</a> en ons
+      <a href={path('privacy', locale)}>privacybeleid</a>.
+    </p>
+  </article>
+</Base>

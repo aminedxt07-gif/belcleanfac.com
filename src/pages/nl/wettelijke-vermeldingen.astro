@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalHero from '../../components/LegalHero.astro';
+import { COMPANY, path } from '../../i18n/config';
+
+const locale = 'nl' as const;
+---
+
+<Base
+  locale={locale}
+  page="legal"
+  title="Wettelijke vermeldingen — Belgium Cleaning Facilities"
+  description="Wettelijke vermeldingen van de website belcleanfac.com: uitgever, hosting, intellectuele eigendom en toepasselijk recht."
+>
+  <LegalHero eyebrow="Wettelijke informatie" title="Wettelijke vermeldingen" updated="Laatst bijgewerkt: 1 september 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>Uitgever van de website</h2>
+    <p>
+      Deze website <strong>belcleanfac.com</strong> wordt uitgegeven door:<br />
+      <strong>{COMPANY.legalName}</strong><br />
+      Rechtsvorm: {COMPANY.legalForm}<br />
+      Maatschappelijke zetel: {COMPANY.address}<br />
+      Ondernemingsnummer (KBO): {COMPANY.bce}<br />
+      BTW-nummer: {COMPANY.vat}<br />
+      E-mail: <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a><br />
+      Telefoon: <a href={`tel:${COMPANY.phone1.replace(/\s/g, '')}`}>{COMPANY.phone1}</a>
+    </p>
+
+    <h2>Verantwoordelijke uitgever</h2>
+    <p>De directie van {COMPANY.legalName}, op bovenvermeld adres van de maatschappelijke zetel.</p>
+
+    <h2>Hosting</h2>
+    <p>De hosting van de website wordt momenteel afgerond. De gegevens van de hostingprovider worden op deze pagina toegevoegd zodra deze in gebruik wordt genomen.</p>
+
+    <h2>Intellectuele eigendom</h2>
+    <p>
+      Alle inhoud van deze website (teksten, foto's, logo, grafisch ontwerp, lay-out) is eigendom van
+      {COMPANY.legalName}, tenzij anders vermeld, en wordt beschermd door het auteursrecht en het merkenrecht. Elke
+      reproductie, weergave, wijziging of verspreiding, geheel of gedeeltelijk, zonder voorafgaande schriftelijke
+      toestemming, is verboden en kan aanleiding geven tot vervolging.
+    </p>
+
+    <h2>Juistheid van de informatie</h2>
+    <p>
+      {COMPANY.legalName} doet er alles aan om de juistheid en actualiteit van de informatie op deze website te
+      waarborgen, zonder de afwezigheid van fouten of weglatingen te kunnen garanderen. De gepresenteerde informatie
+      en beelden zijn indicatief en vormen geen contractuele verbintenis. Elke dienstverlening is het voorwerp van
+      een specifieke offerte.
+    </p>
+
+    <h2>Hyperlinks</h2>
+    <p>
+      Deze website kan links bevatten naar websites van derden (Google Maps, OpenStreetMap...). {COMPANY.legalName}
+      heeft geen controle over deze websites en wijst elke verantwoordelijkheid voor hun inhoud af.
+    </p>
+
+    <h2>Toepasselijk recht</h2>
+    <p>
+      Deze website en deze wettelijke vermeldingen zijn onderworpen aan het Belgisch recht. Bij een geschil en bij
+      gebrek aan een minnelijke oplossing zijn uitsluitend de rechtbanken van het gerechtelijk arrondissement van de
+      maatschappelijke zetel bevoegd, behoudens dwingende wettelijke bepalingen die anders voorschrijven.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Voor vragen over deze wettelijke vermeldingen kan u ons contacteren via
+      <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a> of ons
+      <a href={path('privacy', locale)}>privacybeleid</a> en onze
+      <a href={path('terms', locale)}>algemene voorwaarden</a> raadplegen.
+    </p>
+  </article>
+</Base>

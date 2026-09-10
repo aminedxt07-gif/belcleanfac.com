@@ -1,0 +1,124 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import AltSection from '../../components/AltSection.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { path, UI } from '../../i18n/config';
+
+const locale = 'nl' as const;
+const t = UI[locale];
+---
+
+<Base
+  locale={locale}
+  page="services"
+  title="Onze professionele reinigingsdiensten — BCF"
+  description="Ramen en gevels op hoogte, industriële vloeren, reiniging met osmosewater, gebouwreiniging: ontdek alle professionele reinigingsdiensten van BCF."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Onze diensten"
+        title="Een volledige knowhow in professionele reiniging"
+        description="Sinds 1998 is BCF actief op elk type site voor bedrijven: ramen en gevels op hoogte, industriële vloeren, reiniging met osmosewater en gebouwonderhoud, overal in België."
+        light
+      />
+    </div>
+  </section>
+
+  <AltSection
+    id="vitres-facades"
+    image="/images/vitres-facade-nacelle-chenilles.jpg"
+    eyebrow="Ramen & gevels"
+    title="Onberispelijke reiniging, zelfs op hoogte"
+    description="Wij reinigen ramen met professioneel materiaal aangepast aan elke configuratie: telescopische stangen en osmosewater-systemen voor een streeploos resultaat, hoogwerkers en hoogwerkwagen voor moeilijk bereikbare plaatsen."
+    points={[
+      'Inclusief wassen van kozijnen en omlijstingen',
+      'Gevelreiniging op hoogte (baksteen, steen, beton)',
+      'Mosverwijdering en dakreiniging',
+      'Verwijderen van graffiti met zachte reinigingstechnieken',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Concreet resultaat"
+        title="Voor / na: reiniging van een industriële gevel"
+        description="Sleep de schuifregelaar om te vergelijken."
+      />
+      <div class="mt-12">
+        <BeforeAfter
+          before="/images/facade-avant-nettoyage.jpg"
+          after="/images/facade-apres-nettoyage.jpg"
+          beforeLabel="Voor"
+          afterLabel="Na"
+        />
+      </div>
+    </div>
+  </section>
+
+  <AltSection
+    id="surfaces"
+    image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
+    eyebrow="Vloeren & grote oppervlakken"
+    title="Industriële reiniging van vloeren en grote oppervlakken"
+    description="Schrobmachines voor grote oppervlakken en hogedrukmateriaal voor het onderhoud van magazijnvloeren, binnen- en buitenparkings, en tertiaire en administratieve ruimtes."
+    points={[
+      'Ontvetten en onderhoud van betonvloeren',
+      'Magazijnen, industriële hallen en productiezones',
+      'Parkings en parkeerzones, binnen en buiten',
+      'Kantoren en tertiaire & administratieve ruimtes',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="osmose"
+    image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
+    eyebrow="Reiniging met osmosewater"
+    title="Streeploze ramen, zelfs op hoogte, zonder chemische producten"
+    description="Ons reinigingssysteem met osmosewater (gedemineraliseerd water) verwijdert kalk en resten voor een onberispelijk en duurzaam resultaat. In combinatie met telescopische stangen reinigen we ramen, serres en glazen gevels op hoogte rechtstreeks vanaf de grond, zonder hoogwerker of stelling."
+    points={[
+      'Osmosewater / gedemineraliseerd water: geen strepen, geen kalkresten',
+      'Telescopische stangen tot enkele tientallen meters vanaf de grond',
+      'Reiniging zonder detergent, veilig voor gevoelige oppervlakken',
+      'Ideaal voor etalages, serres, luifels en moeilijk bereikbare glazen gevels',
+    ]}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <AltSection
+    id="batiments"
+    image="/images/autolaveuse-hall-musee-evenementiel.jpg"
+    eyebrow="Gebouwen & collectieve residenties"
+    title="Onderhoud van tertiaire, residentiële en evenementengebouwen"
+    description="Wij verzorgen het regelmatige of occasionele onderhoud van kantoren, studentenresidenties, musea en evenementengebouwen, met teams opgeleid voor de vereisten van elke omgeving."
+    points={[
+      'Kantoren en tertiaire gebouwen',
+      'Studentenresidenties en collectieve woningen',
+      'Musea en evenementengebouwen',
+      'Regelmatig onderhoud of occasionele reiniging na werken',
+    ]}
+    reverse
+    tint
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <CTABanner
+    title="Een dienst op maat van uw site"
+    description="Elke site is anders: laten we uw behoeften bespreken om een aangepast voorstel te bouwen."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

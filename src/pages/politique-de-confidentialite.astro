@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalHero from '../components/LegalHero.astro';
+import { COMPANY, path } from '../i18n/config';
+
+const locale = 'fr' as const;
+---
+
+<Base
+  locale={locale}
+  page="privacy"
+  title="Politique de confidentialité — Belgium Cleaning Facilities"
+  description="Comment Belgium Cleaning Facilities collecte, utilise et protège vos données personnelles, conformément au RGPD."
+>
+  <LegalHero eyebrow="RGPD" title="Politique de confidentialité" updated="Dernière mise à jour : 1er septembre 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>Responsable du traitement</h2>
+    <p>
+      <strong>{COMPANY.legalName}</strong>, {COMPANY.address}, est responsable du traitement des données à
+      caractère personnel collectées via le site belcleanfac.com. Pour toute question relative à vos données,
+      contactez-nous à <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>Données que nous collectons</h2>
+    <p>Ce site ne collecte des données personnelles que si vous complétez volontairement notre formulaire de devis/contact :</p>
+    <ul>
+      <li>Nom et prénom</li>
+      <li>Nom de l'entreprise</li>
+      <li>Adresse email professionnelle</li>
+      <li>Numéro de téléphone (facultatif)</li>
+      <li>Type de prestation souhaité et contenu de votre message</li>
+    </ul>
+    <p>
+      Nous ne posons aucun cookie de suivi, aucun cookie publicitaire ni aucun outil de mesure d'audience sur ce
+      site. Les polices de caractères sont hébergées directement sur notre propre serveur et la carte de
+      localisation utilise OpenStreetMap : aucune donnée n'est transmise à Google lors de votre navigation sur ce
+      site.
+    </p>
+
+    <h2>Finalité du traitement</h2>
+    <p>
+      Les données transmises via le formulaire sont utilisées exclusivement pour traiter votre demande de devis ou
+      de contact, vous recontacter, et assurer le suivi commercial de votre dossier. Elles ne sont jamais utilisées
+      à des fins de prospection non sollicitée ni revendues à des tiers.
+    </p>
+
+    <h2>Base légale</h2>
+    <p>
+      Le traitement de vos données repose sur votre consentement, exprimé par la soumission volontaire du
+      formulaire, ainsi que sur l'intérêt légitime de {COMPANY.legalName} à répondre aux demandes commerciales qui
+      lui sont adressées et, le cas échéant, sur l'exécution de mesures précontractuelles à votre demande.
+    </p>
+
+    <h2>Destinataires de vos données</h2>
+    <p>
+      Vos données sont traitées par les équipes internes de {COMPANY.legalName}. La transmission technique du
+      formulaire de contact est assurée par le prestataire <strong>Web3Forms</strong>, qui agit en tant que
+      sous-traitant au sens du RGPD pour l'acheminement de l'email uniquement, et n'est pas autorisé à utiliser vos
+      données à d'autres fins.
+    </p>
+
+    <h2>Durée de conservation</h2>
+    <p>
+      Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, puis jusqu'à 3 ans à
+      compter de notre dernier échange à des fins de suivi commercial, sauf obligation légale de conservation plus
+      longue (notamment en matière comptable et fiscale).
+    </p>
+
+    <h2>Vos droits</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+    <ul>
+      <li>Droit d'accès à vos données</li>
+      <li>Droit de rectification des données inexactes</li>
+      <li>Droit à l'effacement de vos données</li>
+      <li>Droit à la limitation du traitement</li>
+      <li>Droit d'opposition au traitement</li>
+      <li>Droit à la portabilité de vos données</li>
+    </ul>
+    <p>
+      Vous pouvez exercer ces droits à tout moment en nous contactant à
+      <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a>. Vous disposez également du droit d'introduire une
+      réclamation auprès de l'Autorité de protection des données (APD) belge —
+      <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener noreferrer">
+        www.autoriteprotectiondonnees.be
+      </a>.
+    </p>
+
+    <h2>Sécurité</h2>
+    <p>
+      {COMPANY.legalName} met en œuvre des mesures techniques et organisationnelles raisonnables pour protéger vos
+      données contre tout accès non autorisé, perte ou divulgation.
+    </p>
+
+    <h2>Modifications</h2>
+    <p>
+      Cette politique peut être mise à jour pour refléter d'éventuelles évolutions légales ou techniques. La date de
+      dernière mise à jour figure en haut de cette page. Pour toute question, consultez également nos
+      <a href={path('legal', locale)}>mentions légales</a> et nos <a href={path('terms', locale)}>conditions générales</a>.
+    </p>
+  </article>
+</Base>

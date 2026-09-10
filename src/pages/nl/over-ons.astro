@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import AltSection from '../../components/AltSection.astro';
+import StatBanner from '../../components/StatBanner.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import Icon from '../../components/Icon.astro';
+import { path, UI } from '../../i18n/config';
+
+const locale = 'nl' as const;
+const t = UI[locale];
+
+const stats = [
+  { value: '20+', label: 'jaar expertise' },
+  { value: '100%', label: 'heel België gedekt' },
+  { value: 'VCA', label: 'veiligheidscertificering' },
+  { value: 'ISO 9000', label: 'kwaliteitscertificering' },
+];
+
+const equipment = [
+  { icon: 'truck', title: 'Hoogwerkwagen', description: 'Voor het reinigen van ramen en gevels op grote hoogte, in alle veiligheid.' },
+  { icon: 'building', title: 'Schaarhoogwerker', description: 'Voor interventies op gevels en technische oppervlakken op gemiddelde hoogte.' },
+  { icon: 'droplet', title: 'Karcher-wagen', description: 'Hogedrukreiniging van gevels, vloeren en buitenoppervlakken.' },
+  { icon: 'spark', title: 'Schrobmachine grote oppervlakken', description: 'Snel en efficiënt onderhoud van magazijnvloeren en grote oppervlakken.' },
+  { icon: 'pole', title: 'Osmosewater-systeem', description: 'Telescopische stangen en gedemineraliseerd water voor streeploze ramen, vanaf de grond.' },
+  { icon: 'blaster', title: 'IBIX-zandstraalmachine', description: 'Zachte en precieze reiniging voor het verwijderen van graffiti zonder de ondergrond te beschadigen.' },
+  { icon: 'steam', title: 'Stoommachine', description: 'Reiniging en desinfectie op hoge temperatuur, zonder chemische producten.' },
+  { icon: 'carpet', title: 'Injectie-/extractiemachine', description: 'Dieptereiniging van tapijten en vloerbekleding via injectie-extractie.' },
+];
+---
+
+<Base
+  locale={locale}
+  page="about"
+  title="Over BCF — Belgium Cleaning Facilities"
+  description="Sinds 1998, expertise in professionele reiniging, VCA- en ISO 9000-gecertificeerd, actief in heel België."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Over BCF"
+        title="Sinds 1998, erkende expertise in professionele reiniging"
+        description="Belgium Cleaning Facilities begeleidt bedrijven in heel België met professioneel materiaal aangepast aan elke situatie en een gekwalificeerd team, opgeleid voor de vereisten van industriële en gevoelige omgevingen."
+        light
+      />
+    </div>
+  </section>
+
+  <StatBanner stats={stats} />
+
+  <AltSection
+    image="/images/elevateur-ciseau-intervention.jpg"
+    eyebrow="Ons team"
+    title="Een gekwalificeerd team, opgeleid voor veeleisende omgevingen"
+    description="Onze teams werken dagelijks op industriële, ziekenhuis-, hotel- en universiteitssites. VCA-gecertificeerd, kennen zij de veiligheidsvereisten van elke omgeving en passen zich aan de beperkingen van elke klant aan: bezette site, verschoven werkuren, gevoelige zones."
+    points={[
+      'VCA-certificering voor interventies in industriële omgevingen',
+      'ISO 9000-kwaliteitscertificering',
+      'Teams opgeleid in professioneel materiaal en veiligheidsvoorschriften',
+      'Beschikbaarheid aangepast aan de beperkingen van elke site',
+    ]}
+  />
+
+  <section class="bg-brand-50 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Ons materiaal"
+        title="Een continue investering in professioneel materiaal"
+        description="Om veilig te werken, ongeacht de hoogte of het te behandelen oppervlak."
+      />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {equipment.map((e) => (
+          <div class="rounded-2xl border border-ink-900/5 bg-white p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-600 text-white">
+              <Icon name={e.icon} class="h-6 w-6" />
+            </div>
+            <h3 class="mt-4 text-base font-bold text-ink-900">{e.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700">{e.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <AltSection
+    image="/images/certif-VCA.jpg"
+    eyebrow="Certificeringen"
+    title="Certificeringen erkend door onze professionele klanten"
+    description="Onze VCA- en ISO 9000-certificeringen garanderen onze klanten een veiligheids- en kwaliteitsniveau dat voldoet aan de eisen van industriële, ziekenhuis- en institutionele omgevingen."
+    points={[
+      'VCA — veiligheid, gezondheid en milieu op de werf',
+      'ISO 9000 — kwaliteitsmanagementsysteem',
+      'Lid van de UGBN/ABSU, de beroepsfederatie van de schoonmaaksector in België',
+      'Professionele verzekeringen aangepast aan onze activiteiten',
+      'Heel België, met een vaste uitvalsbasis in Londerzeel',
+    ]}
+    reverse
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <CTABanner
+    title="Laten we uw site bespreken"
+    description="Ons team bestudeert elke aanvraag om de meest geschikte oplossing voor uw activiteit voor te stellen."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

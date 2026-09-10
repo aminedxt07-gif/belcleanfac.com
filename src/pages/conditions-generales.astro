@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalHero from '../components/LegalHero.astro';
+import { COMPANY, path } from '../i18n/config';
+
+const locale = 'fr' as const;
+---
+
+<Base
+  locale={locale}
+  page="terms"
+  title="Conditions générales — Belgium Cleaning Facilities"
+  description="Conditions générales de prestation de services de Belgium Cleaning Facilities (BCF) pour ses clients professionnels."
+>
+  <LegalHero eyebrow="Conditions générales" title="Conditions générales de prestation" updated="Dernière mise à jour : 1er septembre 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>1. Objet et champ d'application</h2>
+    <p>
+      Les présentes conditions générales régissent les relations commerciales entre <strong>{COMPANY.legalName}</strong>
+      (« BCF »), {COMPANY.address}, et ses clients professionnels, pour toute prestation de nettoyage commandée sur
+      base d'un devis accepté. BCF ne travaille pas avec les particuliers.
+    </p>
+
+    <h2>2. Devis et commande</h2>
+    <p>
+      Tout devis établi par BCF est gratuit et valable 30 jours à compter de sa date d'émission, sauf mention
+      contraire. La commande est considérée comme ferme dès acceptation écrite du devis par le client (signature,
+      email de confirmation ou bon de commande).
+    </p>
+
+    <h2>3. Exécution des prestations</h2>
+    <p>
+      BCF s'engage à exécuter les prestations avec le soin et la diligence d'un professionnel du secteur, dans le
+      respect des normes de sécurité applicables, notamment la certification VCA. Les délais d'intervention
+      communiqués sont donnés à titre indicatif et peuvent être adaptés en fonction des conditions d'accès au site,
+      des conditions météorologiques (pour les interventions en extérieur ou en hauteur) ou de tout cas de force
+      majeure.
+    </p>
+
+    <h2>4. Obligations du client</h2>
+    <p>
+      Le client s'engage à garantir un accès sûr et conforme au site d'intervention, à signaler préalablement toute
+      contrainte particulière (zones sensibles, horaires spécifiques, autorisations ou habilitations nécessaires) et
+      à mettre à disposition, le cas échéant, les points d'eau et d'électricité nécessaires à l'exécution de la
+      prestation.
+    </p>
+
+    <h2>5. Tarifs et paiement</h2>
+    <p>
+      Les prix sont exprimés en euros, hors TVA sauf mention contraire. Sauf accord particulier stipulé au devis,
+      les factures sont payables dans les 30 jours calendrier à compter de leur date d'émission. Tout retard de
+      paiement pourra donner lieu à des intérêts de retard et à une indemnité forfaitaire, conformément à la
+      législation belge relative à la lutte contre les retards de paiement dans les transactions commerciales.
+    </p>
+
+    <h2>6. Assurance et responsabilité</h2>
+    <p>
+      BCF dispose d'une assurance responsabilité civile professionnelle couvrant ses activités de nettoyage. La
+      responsabilité de BCF ne pourra être engagée qu'en cas de faute prouvée dans l'exécution des prestations, et
+      est limitée aux dommages directs, à l'exclusion de tout dommage indirect ou immatériel.
+    </p>
+
+    <h2>7. Contrats d'entretien réguliers</h2>
+    <p>
+      Pour les prestations d'entretien régulier faisant l'objet d'un contrat, celui-ci peut être résilié par l'une
+      ou l'autre partie moyennant le préavis écrit convenu au contrat ou, à défaut, un préavis raisonnable d'au
+      moins 30 jours.
+    </p>
+
+    <h2>8. Réclamations</h2>
+    <p>
+      Toute réclamation relative à une prestation doit être adressée à BCF par écrit, dans un délai raisonnable
+      suivant l'exécution de la prestation concernée, à <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>9. Droit applicable et litiges</h2>
+    <p>
+      Les présentes conditions générales sont soumises au droit belge. Tout litige relatif à leur interprétation ou
+      à leur exécution relève de la compétence exclusive des tribunaux de l'arrondissement judiciaire du siège
+      social de BCF, sauf disposition légale impérative contraire.
+    </p>
+
+    <p>
+      Voir aussi nos <a href={path('legal', locale)}>mentions légales</a> et notre
+      <a href={path('privacy', locale)}>politique de confidentialité</a>.
+    </p>
+  </article>
+</Base>

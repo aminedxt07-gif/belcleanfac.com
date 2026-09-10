@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalHero from '../../components/LegalHero.astro';
+import { COMPANY, path } from '../../i18n/config';
+
+const locale = 'nl' as const;
+---
+
+<Base
+  locale={locale}
+  page="privacy"
+  title="Privacybeleid — Belgium Cleaning Facilities"
+  description="Hoe Belgium Cleaning Facilities uw persoonsgegevens verzamelt, gebruikt en beschermt, conform de AVG/GDPR."
+>
+  <LegalHero eyebrow="AVG / GDPR" title="Privacybeleid" updated="Laatst bijgewerkt: 1 september 2026" />
+
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2>Verwerkingsverantwoordelijke</h2>
+    <p>
+      <strong>{COMPANY.legalName}</strong>, {COMPANY.address}, is verantwoordelijk voor de verwerking van
+      persoonsgegevens die via de website belcleanfac.com worden verzameld. Voor vragen over uw gegevens kan u ons
+      contacteren via <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    </p>
+
+    <h2>Welke gegevens wij verzamelen</h2>
+    <p>Deze website verzamelt enkel persoonsgegevens wanneer u vrijwillig ons offerte-/contactformulier invult:</p>
+    <ul>
+      <li>Naam en voornaam</li>
+      <li>Bedrijfsnaam</li>
+      <li>Professioneel e-mailadres</li>
+      <li>Telefoonnummer (optioneel)</li>
+      <li>Gewenste dienst en inhoud van uw bericht</li>
+    </ul>
+    <p>
+      Wij plaatsen geen tracking cookies, advertentiecookies of analysetools op deze website. De lettertypes worden
+      rechtstreeks op onze eigen server gehost en de locatiekaart gebruikt OpenStreetMap: er wordt geen enkele
+      gegeven naar Google verzonden tijdens uw bezoek aan deze website.
+    </p>
+
+    <h2>Doel van de verwerking</h2>
+    <p>
+      De via het formulier verzonden gegevens worden uitsluitend gebruikt om uw offerte- of contactaanvraag te
+      verwerken, u te contacteren en de commerciële opvolging van uw dossier te verzekeren. Ze worden nooit gebruikt
+      voor ongevraagde prospectie of doorverkocht aan derden.
+    </p>
+
+    <h2>Rechtsgrond</h2>
+    <p>
+      De verwerking van uw gegevens is gebaseerd op uw toestemming, uitgedrukt door het vrijwillig indienen van het
+      formulier, evenals op het gerechtvaardigd belang van {COMPANY.legalName} om te antwoorden op de commerciële
+      aanvragen die het ontvangt en, in voorkomend geval, op de uitvoering van precontractuele maatregelen op uw
+      verzoek.
+    </p>
+
+    <h2>Ontvangers van uw gegevens</h2>
+    <p>
+      Uw gegevens worden verwerkt door de interne teams van {COMPANY.legalName}. De technische verzending van het
+      contactformulier gebeurt via de dienstverlener <strong>Web3Forms</strong>, die optreedt als verwerker in de
+      zin van de AVG, uitsluitend voor het doorsturen van de e-mail, en niet gemachtigd is uw gegevens voor andere
+      doeleinden te gebruiken.
+    </p>
+
+    <h2>Bewaartermijn</h2>
+    <p>
+      Uw gegevens worden bewaard zolang nodig is om uw aanvraag te verwerken, en vervolgens tot 3 jaar na ons
+      laatste contact voor commerciële opvolgingsdoeleinden, tenzij een wettelijke verplichting een langere bewaring
+      vereist (met name boekhoudkundig en fiscaal).
+    </p>
+
+    <h2>Uw rechten</h2>
+    <p>Conform de Algemene Verordening Gegevensbescherming (AVG/GDPR) heeft u de volgende rechten:</p>
+    <ul>
+      <li>Recht op inzage van uw gegevens</li>
+      <li>Recht op rectificatie van onjuiste gegevens</li>
+      <li>Recht op verwijdering van uw gegevens</li>
+      <li>Recht op beperking van de verwerking</li>
+      <li>Recht van verzet tegen de verwerking</li>
+      <li>Recht op overdraagbaarheid van uw gegevens</li>
+    </ul>
+    <p>
+      U kan deze rechten op elk moment uitoefenen door ons te contacteren via
+      <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a>. U heeft ook het recht om een klacht in te dienen bij
+      de Belgische Gegevensbeschermingsautoriteit (GBA) —
+      <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener noreferrer">
+        www.gegevensbeschermingsautoriteit.be
+      </a>.
+    </p>
+
+    <h2>Beveiliging</h2>
+    <p>
+      {COMPANY.legalName} neemt redelijke technische en organisatorische maatregelen om uw gegevens te beschermen
+      tegen ongeoorloofde toegang, verlies of openbaarmaking.
+    </p>
+
+    <h2>Wijzigingen</h2>
+    <p>
+      Dit beleid kan worden bijgewerkt om eventuele juridische of technische wijzigingen te weerspiegelen. De datum
+      van laatste update staat bovenaan deze pagina. Raadpleeg ook onze
+      <a href={path('legal', locale)}>wettelijke vermeldingen</a> en onze
+      <a href={path('terms', locale)}>algemene voorwaarden</a>.
+    </p>
+  </article>
+</Base>

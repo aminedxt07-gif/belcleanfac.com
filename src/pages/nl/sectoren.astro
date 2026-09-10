@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import SectorCard from '../../components/SectorCard.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { path, UI } from '../../i18n/config';
+
+const locale = 'nl' as const;
+const t = UI[locale];
+
+const sectors = [
+  {
+    image: '/images/usine-autolaveuse-entrepot.jpg',
+    title: 'Industrie & logistiek',
+    description: 'Reiniging van productiesites, magazijnen en logistieke sites: vloeren, gevels, stofafname van productie-eenheden.',
+    reference: 'Waaronder SONOCO',
+  },
+  {
+    image: '/images/aston-martin-zaventem.jpg',
+    title: 'Automotive',
+    description: 'Gevel- en vloeronderhoud voor hoogwaardige autodealers en showrooms.',
+    reference: 'Aston Martin Zaventem · Van Mossel',
+  },
+  {
+    image: '/images/nettoyage-vitres-campus-universitaire.jpg',
+    title: 'Hoger onderwijs',
+    description: 'Reiniging van studentenresidenties en universiteitsgebouwen, in bezette gebouwen.',
+    reference: 'KU Leuven · VUB',
+  },
+  {
+    image: '/images/wiltchers-nuit-camion-bcf.jpg',
+    title: 'Prestigieuze hotellerie',
+    description: 'Gevelonderhoud voor hoogwaardige etablissementen in het stadscentrum.',
+    reference: "Hotel Wiltcher's — Louizalaan, Brussel",
+  },
+  {
+    image: '/images/image-surface-parking-propre-1.jpeg',
+    title: 'Musea & evenementengebouwen',
+    description: 'Reiniging van vloeren en grote oppervlakken voor culturele en evenementenlocaties die publiek ontvangen.',
+  },
+  {
+    image: '/images/gom-nettoyage-sol-garage.jpg',
+    title: 'Onderaanneming voor grote groepen',
+    description: 'Betrouwbare onderaannemingspartner voor industriële en tertiaire schoonmaakopdrachten in heel België.',
+    reference: 'GOM · Vebego · Group F',
+  },
+];
+---
+
+<Base
+  locale={locale}
+  page="sectors"
+  title="Sectoren & referenties — BCF Professionele reiniging"
+  description="Sinds 1998 ten dienste van industrie, automotive, hoger onderwijs, prestigieuze hotellerie en de grote schoonmaakgroepen in België."
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Sectoren & referenties"
+        title="Expertise die zich aanpast aan elke omgeving"
+        description="Van industriële sites tot prestigieuze hotels, via universiteitscampussen: onze teams werken in veeleisende omgevingen, met discretie en veiligheid."
+        light
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sectors.map((s) => (
+        <SectorCard image={s.image} title={s.title} description={s.description} reference={s.reference} />
+      ))}
+    </div>
+  </section>
+
+  <CTABanner
+    title="Uw sector staat er niet bij?"
+    description="Wij werken op vrijwel elk type professionele site. Laten we uw project bespreken."
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>
