@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://belcleanfac.com',
+  site: 'https://belcleanfac.be',
   devToolbar: {
     enabled: false
   },
@@ -19,6 +19,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      lastmod: new Date(),
       i18n: {
         defaultLocale: 'fr',
         locales: {

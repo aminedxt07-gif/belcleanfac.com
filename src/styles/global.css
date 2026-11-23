@@ -46,9 +46,11 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Fade-ins start at 0.01 (not 0): Chrome never counts elements that first paint at opacity 0 as Largest
+   Contentful Paint candidates, so a hero that fades in from 0 is invisible to the LCP metric. */
 @keyframes fade-up {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(16px);
   }
   to {
@@ -58,13 +60,13 @@ body {
 }
 
 .hero-enter {
-  opacity: 0;
+  opacity: 0.01;
   animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes hero-image-in {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: scale(1.06);
   }
   to {
@@ -84,6 +86,10 @@ body {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Page-title blocks start at 0.01 so they can count as the LCP element (see note above). */
+[data-reveal][data-reveal-hero] {
+  opacity: 0.01;
 }
 [data-reveal].is-visible {
   opacity: 1;
@@ -139,6 +145,66 @@ body {
 .prose-legal .legal-updated {
   color: var(--color-ink-700);
   font-size: 0.875rem;
+}
+
+.prose-blog h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-ink-900);
+}
+.prose-blog h2:first-child {
+  margin-top: 0;
+}
+.prose-blog h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-ink-900);
+}
+.prose-blog p {
+  margin-top: 0.9rem;
+  line-height: 1.8;
+  color: var(--color-ink-700);
+}
+.prose-blog ul {
+  margin-top: 0.9rem;
+  margin-left: 1.25rem;
+  list-style: disc;
+  color: var(--color-ink-700);
+}
+.prose-blog li {
+  margin-top: 0.4rem;
+  line-height: 1.7;
+}
+.prose-blog a {
+  color: var(--color-brand-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-blog strong {
+  color: var(--color-ink-900);
+  font-weight: 600;
+}
+.prose-blog table {
+  margin-top: 1.5rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.prose-blog th,
+.prose-blog td {
+  border: 1px solid var(--color-brand-100);
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  color: var(--color-ink-700);
+}
+.prose-blog th {
+  background: var(--color-brand-50);
+  color: var(--color-ink-900);
+  font-weight: 600;
 }
 
 @keyframes marquee {

@@ -5,20 +5,29 @@ import AltSection from '../../components/AltSection.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
 import CTABanner from '../../components/CTABanner.astro';
 import { path, UI } from '../../i18n/config';
+import FAQ from '../../components/FAQ.astro';
+import { HOME_FAQ, SERVICES_FAQ } from '../../i18n/faq';
+import { faqNode, serviceNodes, SITE } from '../../i18n/seo';
+import { SERVICE_PATHS, SERVICE_UI } from '../../i18n/service-pages';
+import { PATHS } from '../../i18n/config';
 
 const locale = 'en' as const;
 const t = UI[locale];
+const faq = SERVICES_FAQ[locale];
+const pageUrl = new URL(PATHS.services[locale], SITE).toString();
+const schema = [...serviceNodes(locale, pageUrl, [{"anchor": "vitres-facades", "name": "High-level window and facade cleaning", "description": "Window cleaning with telescopic poles, pure water, aerial platforms and a truck-mounted lift; frame cleaning, facade sandblasting, roof moss removal and graffiti removal.", "serviceType": "Window and facade cleaning"}, {"anchor": "surfaces", "name": "Industrial floor and large-surface cleaning", "description": "Large-area scrubber-dryers and high-pressure equipment for warehouse floors, industrial halls, car parks and commercial spaces.", "serviceType": "Industrial floor cleaning"}, {"anchor": "osmose", "name": "Reverse-osmosis (pure water) window cleaning", "description": "Demineralised-water cleaning with telescopic poles: windows, verandas and glass facades streak-free from the ground, without detergent.", "serviceType": "Pure water (reverse-osmosis) window cleaning"}, {"anchor": "batiments", "name": "Commercial, residential and event building maintenance", "description": "Regular or one-off maintenance of offices, student residences, museums and event buildings, including post-construction cleaning.", "serviceType": "Building maintenance cleaning"}]), faqNode(pageUrl, faq.items)];
 ---
 
 <Base
   locale={locale}
   page="services"
-  title="Our professional cleaning services — BCF"
+  schema={schema}
+  title="Window, facade & industrial floor cleaning services | BCF"
   description="High-level windows and facades, industrial floors, reverse-osmosis water cleaning, building cleaning: discover BCF's full range of professional cleaning services."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="Our services"
         title="Complete know-how in professional cleaning"
         description="Since 1998, BCF has worked on every type of site for businesses: high-level windows and facades, industrial floors, reverse-osmosis water cleaning and building upkeep, throughout Belgium."
@@ -29,15 +38,17 @@ const t = UI[locale];
 
   <AltSection
     id="vitres-facades"
+    moreHref={SERVICE_PATHS.windows[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/vitres-facade-nacelle-chenilles.jpg"
     eyebrow="Windows & facades"
     title="Spotless cleaning, even at height"
     description="We clean windows with professional equipment suited to every configuration: telescopic poles and reverse-osmosis water systems for a streak-free finish, cherry pickers and boom trucks for complex access."
     points={[
       'Frame and surround washing included',
-      'High-level facade stripping (brick, stone, concrete)',
+      'High-level facade sandblasting (brick, stone, concrete)',
       'Moss removal and roof cleaning',
-      'Graffiti removal with gentle stripping techniques',
+      'Graffiti removal with gentle sandblasting techniques',
     ]}
     ctaLabel={t.ctaQuote}
     ctaHref={path('contact', locale)}
@@ -63,6 +74,8 @@ const t = UI[locale];
 
   <AltSection
     id="surfaces"
+    moreHref={SERVICE_PATHS.floors[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
     eyebrow="Floors & large surfaces"
     title="Industrial cleaning of floors and large surfaces"
@@ -81,6 +94,8 @@ const t = UI[locale];
 
   <AltSection
     id="osmose"
+    moreHref={SERVICE_PATHS.osmosis[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
     eyebrow="Reverse-osmosis water cleaning"
     title="Streak-free windows, even at height, with no chemicals"
@@ -97,6 +112,8 @@ const t = UI[locale];
 
   <AltSection
     id="batiments"
+    moreHref={SERVICE_PATHS.buildings[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-hall-musee-evenementiel.jpg"
     eyebrow="Buildings & collective residential"
     title="Upkeep of commercial, residential and event buildings"
@@ -112,6 +129,8 @@ const t = UI[locale];
     ctaLabel={t.ctaQuote}
     ctaHref={path('contact', locale)}
   />
+
+  <FAQ eyebrow={faq.eyebrow} title={faq.title} description={faq.description} items={faq.items} tint />
 
   <CTABanner
     title="A tailored service for your site"

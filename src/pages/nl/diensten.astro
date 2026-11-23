@@ -5,20 +5,29 @@ import AltSection from '../../components/AltSection.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
 import CTABanner from '../../components/CTABanner.astro';
 import { path, UI } from '../../i18n/config';
+import FAQ from '../../components/FAQ.astro';
+import { HOME_FAQ, SERVICES_FAQ } from '../../i18n/faq';
+import { faqNode, serviceNodes, SITE } from '../../i18n/seo';
+import { SERVICE_PATHS, SERVICE_UI } from '../../i18n/service-pages';
+import { PATHS } from '../../i18n/config';
 
 const locale = 'nl' as const;
 const t = UI[locale];
+const faq = SERVICES_FAQ[locale];
+const pageUrl = new URL(PATHS.services[locale], SITE).toString();
+const schema = [...serviceNodes(locale, pageUrl, [{"anchor": "vitres-facades", "name": "Ramen- en gevelreiniging op hoogte", "description": "Ramen wassen met telescopische stangen, osmosewater, hoogwerkers en hoogwerkervrachtwagen; reiniging van kozijnen, zandstralen van gevels, daken ontmossen en graffiti verwijderen.", "serviceType": "Window and facade cleaning"}, {"anchor": "surfaces", "name": "Industriële reiniging van vloeren en grote oppervlakken", "description": "Grote schrobzuigmachines en hogedrukmateriaal voor vloeren van magazijnen, industriehallen, parkings en tertiaire ruimtes.", "serviceType": "Industrial floor cleaning"}, {"anchor": "osmose", "name": "Ramen wassen met osmosewater", "description": "Reiniging met gedemineraliseerd water en telescopische stangen: ramen, veranda's en glazen gevels streeploos vanaf de grond, zonder detergent.", "serviceType": "Pure water (reverse-osmosis) window cleaning"}, {"anchor": "batiments", "name": "Onderhoud van tertiaire, residentiële en evenementiële gebouwen", "description": "Regelmatig of eenmalig onderhoud van kantoren, studentenresidenties, musea en evenementiële gebouwen, inclusief reiniging na de bouw.", "serviceType": "Building maintenance cleaning"}]), faqNode(pageUrl, faq.items)];
 ---
 
 <Base
   locale={locale}
   page="services"
-  title="Onze professionele reinigingsdiensten — BCF"
+  schema={schema}
+  title="Ramen-, gevel- en industriële vloerreiniging | BCF"
   description="Ramen en gevels op hoogte, industriële vloeren, reiniging met osmosewater, gebouwreiniging: ontdek alle professionele reinigingsdiensten van BCF."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="Onze diensten"
         title="Een volledige knowhow in professionele reiniging"
         description="Sinds 1998 is BCF actief op elk type site voor bedrijven: ramen en gevels op hoogte, industriële vloeren, reiniging met osmosewater en gebouwonderhoud, overal in België."
@@ -29,6 +38,8 @@ const t = UI[locale];
 
   <AltSection
     id="vitres-facades"
+    moreHref={SERVICE_PATHS.windows[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/vitres-facade-nacelle-chenilles.jpg"
     eyebrow="Ramen & gevels"
     title="Onberispelijke reiniging, zelfs op hoogte"
@@ -63,6 +74,8 @@ const t = UI[locale];
 
   <AltSection
     id="surfaces"
+    moreHref={SERVICE_PATHS.floors[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
     eyebrow="Vloeren & grote oppervlakken"
     title="Industriële reiniging van vloeren en grote oppervlakken"
@@ -81,6 +94,8 @@ const t = UI[locale];
 
   <AltSection
     id="osmose"
+    moreHref={SERVICE_PATHS.osmosis[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
     eyebrow="Reiniging met osmosewater"
     title="Streeploze ramen, zelfs op hoogte, zonder chemische producten"
@@ -97,6 +112,8 @@ const t = UI[locale];
 
   <AltSection
     id="batiments"
+    moreHref={SERVICE_PATHS.buildings[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-hall-musee-evenementiel.jpg"
     eyebrow="Gebouwen & collectieve residenties"
     title="Onderhoud van tertiaire, residentiële en evenementengebouwen"
@@ -112,6 +129,8 @@ const t = UI[locale];
     ctaLabel={t.ctaQuote}
     ctaHref={path('contact', locale)}
   />
+
+  <FAQ eyebrow={faq.eyebrow} title={faq.title} description={faq.description} items={faq.items} tint />
 
   <CTABanner
     title="Een dienst op maat van uw site"

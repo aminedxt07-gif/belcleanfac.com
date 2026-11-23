@@ -14,7 +14,7 @@ const stats = [
   { value: '20+', label: 'years of expertise' },
   { value: '100%', label: 'of Belgium covered' },
   { value: 'VCA', label: 'safety certification' },
-  { value: 'ISO 9000', label: 'quality certification' },
+  { value: 'UGBN/ABSU', label: 'industry federation' },
 ];
 
 const equipment = [
@@ -32,12 +32,13 @@ const equipment = [
 <Base
   locale={locale}
   page="about"
+  pageType="AboutPage"
   title="About BCF — Belgium Cleaning Facilities"
-  description="Since 1998, expertise in professional cleaning, VCA and ISO 9000 certified, active across Belgium."
+  description="Since 1998, expertise in professional cleaning, VCA certified, active across Belgium."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="About BCF"
         title="Since 1998, recognised expertise in professional cleaning"
         description="Belgium Cleaning Facilities supports businesses across Belgium with professional equipment suited to every situation and a qualified team, trained for the requirements of industrial and sensitive environments."
@@ -55,7 +56,6 @@ const equipment = [
     description="Our teams work daily on industrial, hospital, hotel and university sites. VCA-certified, they understand the safety requirements specific to each environment and adapt to each client's constraints: occupied sites, shifted hours, sensitive areas."
     points={[
       'VCA certification for interventions in industrial environments',
-      'ISO 9000 quality certification',
       'Teams trained in professional equipment and safety procedures',
       'Availability adapted to the constraints of each site',
     ]}
@@ -86,10 +86,9 @@ const equipment = [
     image="/images/certif-VCA.jpg"
     eyebrow="Certifications"
     title="Certifications recognised by our professional clients"
-    description="Our VCA and ISO 9000 certifications guarantee our clients a level of safety and quality that meets the requirements of industrial, hospital and institutional environments."
+    description="Our VCA certification guarantees our clients a level of safety that meets the requirements of industrial, hospital and institutional environments."
     points={[
       'VCA — safety, health and environment on site',
-      'ISO 9000 — quality management system',
       'Member of UGBN/ABSU, the professional federation for the cleaning industry in Belgium',
       'Professional insurance suited to our activities',
       'Across Belgium, with a home base in Londerzeel',

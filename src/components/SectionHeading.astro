@@ -5,20 +5,22 @@ interface Props {
   description?: string;
   align?: 'left' | 'center';
   light?: boolean;
+  /** Heading level: 'h1' for the page's main title (one per page), 'h2' otherwise. */
+  as?: 'h1' | 'h2';
 }
 
-const { eyebrow, title, description, align = 'center', light = false } = Astro.props;
+const { eyebrow, title, description, align = 'center', light = false, as: Tag = 'h2' } = Astro.props;
 ---
 
-<div data-reveal class:list={['max-w-3xl', align === 'center' ? 'mx-auto text-center' : 'text-left']}>
+<div data-reveal data-reveal-hero={Tag === 'h1' ? '' : undefined} class:list={['max-w-3xl', align === 'center' ? 'mx-auto text-center' : 'text-left']}>
   {eyebrow && (
     <p class:list={['text-sm font-semibold uppercase tracking-[0.2em]', light ? 'text-brand-300' : 'text-brand-600']}>
       {eyebrow}
     </p>
   )}
-  <h2 class:list={['mt-3 text-3xl font-bold sm:text-4xl', light ? 'text-white' : 'text-ink-900']}>
+  <Tag class:list={['mt-3 text-3xl font-bold sm:text-4xl', light ? 'text-white' : 'text-ink-900']}>
     {title}
-  </h2>
+  </Tag>
   {description && (
     <p class:list={['mt-4 text-lg leading-relaxed', light ? 'text-brand-100' : 'text-ink-700']}>
       {description}

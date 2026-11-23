@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from './SectionHeading.astro';
+import AltSection from './AltSection.astro';
+import ServiceCard from './ServiceCard.astro';
+import FAQ from './FAQ.astro';
+import CTABanner from './CTABanner.astro';
+import { UI, NAV_LABELS, PATHS, path, type Locale } from '../i18n/config';
+import { SERVICE_KEYS, SERVICE_PATHS, SERVICE_PAGES, SERVICE_UI, type ServiceKey } from '../i18n/service-pages';
+import { CASES, CASE_PATHS, CASE_UI, type CaseKey } from '../i18n/case-studies';
+import { faqNode, serviceNodes, SITE } from '../i18n/seo';
+
+interface Props {
+  locale: Locale;
+  serviceKey: ServiceKey;
+}
+
+const { locale, serviceKey } = Astro.props;
+const c = SERVICE_PAGES[locale][serviceKey];
+const ui = SERVICE_UI[locale];
+const t = UI[locale];
+const pageUrl = new URL(SERVICE_PATHS[serviceKey][locale], SITE).toString();
+const alternates = {
+  fr: SERVICE_PATHS[serviceKey].fr,
+  nl: SERVICE_PATHS[serviceKey].nl,
+  en: SERVICE_PATHS[serviceKey].en,
+};
+const breadcrumb = [
+  { name: NAV_LABELS[locale].home, path: PATHS.home[locale] },
+  { name: NAV_LABELS[locale].services, path: PATHS.services[locale] },
+  { name: c.label, path: SERVICE_PATHS[serviceKey][locale] },
+];
+const [service] = serviceNodes(locale, pageUrl, [
+  { name: c.h1, description: c.description, serviceType: c.schemaType },
+]);
+const schema = [service, faqNode(pageUrl, c.faq)];
+const caseMap: Record<ServiceKey, CaseKey[]> = { windows: ['vub', 'wiltchers'], osmosis: ['vub', 'wiltchers'], floors: ['aston'], buildings: [] };
+const relatedCases = caseMap[serviceKey];
+const caseUi = CASE_UI[locale];
+const others = SERVICE_KEYS.filter((k) => k !== serviceKey);
+const faqHeading = {
+  fr: { eyebrow: 'Questions fréquentes', title: `Vos questions sur : ${c.label.toLowerCase()}`, description: 'Les réponses avant de demander votre devis.' },
+  nl: { eyebrow: 'Veelgestelde vragen', title: `Uw vragen over: ${c.label.toLowerCase()}`, description: 'De antwoorden voordat u een offerte aanvraagt.' },
+  en: { eyebrow: 'Frequently asked questions', title: `Your questions about: ${c.label.toLowerCase()}`, description: 'Answers before you request a quote.' },
+}[locale];
+---
+
+<Base
+  locale={locale}
+  page="services"
+  title={c.title}
+  description={c.description}
+  alternates={alternates}
+  image={c.image}
+  imageAlt={c.imageAlt}
+  breadcrumb={breadcrumb}
+  schema={schema}
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading as="h1" eyebrow={c.eyebrow} title={c.h1} description={c.intro} light />
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href={path('contact', locale)} class="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-800 shadow-lg shadow-black/10 transition-transform hover:-translate-y-0.5">{t.ctaQuote}</a>
+        <a href={`tel:${t.phone1.replace(/\s/g, '')}`} class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">{t.phone1}</a>
+      </div>
+    </div>
+  </section>
+
+  <AltSection
+    image={c.image}
+    imageAlt={c.imageAlt}
+    eyebrow={c.eyebrow}
+    title={c.introTitle}
+    description=""
+    points={c.points}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+  />
+
+  <section class="bg-brand-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold text-ink-900 sm:text-3xl">{c.forWhomTitle}</h2>
+          <ul class="mt-6 space-y-3">
+            {c.forWhom.map((w) => (
+              <li class="flex items-start gap-3 text-ink-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 h-5 w-5 shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7" />
+                </svg>
+                <span>{w}</span>
+              </li>
+            ))}
+          </ul>
+          <h3 class="mt-10 text-lg font-bold text-ink-900">{c.equipmentTitle}</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {c.equipment.map((e) => (
+              <li class="rounded-full border border-brand-600/20 bg-white px-4 py-1.5 text-sm font-medium text-brand-800">{e}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-ink-900 sm:text-3xl">{c.stepsTitle}</h2>
+          <ol class="mt-6 space-y-5">
+            {c.steps.map((s, i) => (
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">{i + 1}</span>
+                <div>
+                  <h3 class="font-semibold text-ink-900">{s.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-ink-700">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {relatedCases.length > 0 && (
+    <section class="bg-white py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={caseUi.hubEyebrow} title={caseUi.hubTitle} description={caseUi.hubDesc} />
+        <div class:list={['mx-auto mt-12 grid max-w-4xl gap-6', relatedCases.length > 1 ? 'sm:grid-cols-2' : 'max-w-md']}>
+          {relatedCases.map((k) => (
+            <ServiceCard image={CASES[locale][k].image} title={CASES[locale][k].label} description={CASES[locale][k].cardSummary} href={CASE_PATHS[k][locale]} linkLabel={caseUi.read} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <FAQ eyebrow={faqHeading.eyebrow} title={faqHeading.title} description={faqHeading.description} items={c.faq} />
+
+  <section class="bg-white pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={ui.allServices} title={ui.related} description={ui.relatedDesc} />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {others.map((k) => {
+          const o = SERVICE_PAGES[locale][k];
+          return <ServiceCard image={o.image} title={o.label} description={o.cardDescription} href={SERVICE_PATHS[k][locale]} linkLabel={ui.learnMore} />;
+        })}
+      </div>
+      <p class="mt-10 text-center text-sm text-ink-700">
+        <a href={path('services', locale)} class="font-semibold text-brand-600 hover:text-brand-700">{ui.allServices} →</a>
+        <span class="mx-3 text-ink-700/40">·</span>
+        <a href={ui.guideHref} class="font-semibold text-brand-600 hover:text-brand-700">{ui.guideLabel} →</a>
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    title={ui.ctaTitle}
+    description={ui.ctaDesc}
+    ctaLabel={t.ctaQuote}
+    ctaHref={path('contact', locale)}
+    phoneLabel={t.ctaCall}
+    phone={t.phone1}
+  />
+</Base>

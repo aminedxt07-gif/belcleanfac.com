@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import SectorCard from '../components/SectorCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { CASES, CASE_KEYS, CASE_PATHS, CASE_UI } from '../i18n/case-studies';
 import CTABanner from '../components/CTABanner.astro';
 import { path, UI } from '../i18n/config';
 
@@ -48,17 +50,19 @@ const sectors = [
     reference: 'GOM · Vebego · Group F',
   },
 ];
+const caseUi = CASE_UI[locale];
 ---
 
 <Base
   locale={locale}
   page="sectors"
+  pageType="CollectionPage"
   title="Secteurs & références — BCF Nettoyage professionnel"
   description="Depuis 1998 au service de l'industrie, l'automobile, l'enseignement supérieur, l'hôtellerie de prestige et les grands groupes de nettoyage en Belgique."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="Secteurs & références"
         title="Une expertise qui s'adapte à chaque environnement"
         description="Des sites industriels aux hôtels de prestige, en passant par les campus universitaires : nos équipes interviennent sur des environnements exigeants, en toute discrétion et sécurité."
@@ -72,6 +76,17 @@ const sectors = [
       {sectors.map((s) => (
         <SectorCard image={s.image} title={s.title} description={s.description} reference={s.reference} />
       ))}
+    </div>
+  </section>
+
+  <section class="bg-brand-50 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={caseUi.hubEyebrow} title={caseUi.hubTitle} description={caseUi.hubDesc} />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {CASE_KEYS.map((k) => (
+          <ServiceCard image={CASES[locale][k].image} title={CASES[locale][k].label} description={CASES[locale][k].cardSummary} href={CASE_PATHS[k][locale]} linkLabel={caseUi.read} />
+        ))}
+      </div>
     </div>
   </section>
 

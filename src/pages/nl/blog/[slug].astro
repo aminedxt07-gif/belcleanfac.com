@@ -1,0 +1,41 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import { PATHS } from '../../../i18n/config';
+
+const locale = 'nl' as const;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (p) => p.data.locale === 'nl' && !p.data.draft);
+  return posts.map((post) => ({ params: { slug: post.data.slug }, props: { id: post.id } }));
+}
+
+const { id } = Astro.props;
+const post = await getEntry('blog', id);
+if (!post) throw new Error('Blog post not found');
+const { Content } = await render(post);
+
+const translations = await getCollection('blog', (p) => p.data.translationId === post.data.translationId && !p.data.draft);
+const alternates = { fr: PATHS.blog.fr, nl: PATHS.blog.nl, en: PATHS.blog.en };
+for (const tr of translations) {
+  alternates[tr.data.locale] = `${PATHS.blog[tr.data.locale]}${tr.data.slug}/`;
+}
+
+const site = 'https://belcleanfac.be';
+const canonicalUrl = new URL(alternates.nl, site).toString();
+---
+
+<BlogPost
+  locale={locale}
+  title={post.data.title}
+  description={post.data.description}
+  category={post.data.category}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  image={post.data.image}
+  imageAlt={post.data.imageAlt}
+  alternates={alternates}
+  canonicalUrl={canonicalUrl}
+>
+  <Content />
+</BlogPost>

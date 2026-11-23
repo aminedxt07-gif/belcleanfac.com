@@ -1,5 +1,5 @@
 ---
-import { NAV_LABELS, UI, LEGAL_LABELS, path, type Locale, type PageKey } from '../i18n/config';
+import { NAV_LABELS, UI, LEGAL_LABELS, COOKIE_CONSENT, path, type Locale, type PageKey } from '../i18n/config';
 
 interface Props {
   locale: Locale;
@@ -9,8 +9,9 @@ const { locale } = Astro.props;
 const nav = NAV_LABELS[locale];
 const t = UI[locale];
 const legal = LEGAL_LABELS[locale];
-const pages: PageKey[] = ['home', 'services', 'sectors', 'about', 'contact'];
+const pages: PageKey[] = ['home', 'services', 'sectors', 'about', 'blog', 'contact'];
 const legalPages: PageKey[] = ['legal', 'privacy', 'terms'];
+const cookieManage = COOKIE_CONSENT[locale].manage;
 const year = new Date().getFullYear();
 ---
 
@@ -27,13 +28,12 @@ const year = new Date().getFullYear();
         </p>
         <div class="mt-5 flex gap-2">
           <span class="rounded-full border border-brand-400/30 px-3 py-1 text-xs font-semibold text-brand-100">VCA</span>
-          <span class="rounded-full border border-brand-400/30 px-3 py-1 text-xs font-semibold text-brand-100">ISO 9000</span>
           <span class="rounded-full border border-brand-400/30 px-3 py-1 text-xs font-semibold text-brand-100">UGBN/ABSU</span>
         </div>
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white">{nav.home === 'Home' ? 'Menu' : 'Menu'}</h3>
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-white">{nav.home === 'Home' ? 'Menu' : 'Menu'}</h2>
         <ul class="mt-4 space-y-2 text-sm">
           {pages.map((p) => (
             <li><a href={path(p, locale)} class="text-brand-200 transition-colors hover:text-white">{nav[p]}</a></li>
@@ -42,7 +42,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white">Contact</h3>
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-white">Contact</h2>
         <ul class="mt-4 space-y-2 text-sm text-brand-200">
           <li><a href={`tel:${t.phone1.replace(/\s/g, '')}`} class="hover:text-white">{t.phone1}</a></li>
           <li><a href={`tel:${t.phone2.replace(/\s/g, '')}`} class="hover:text-white">{t.phone2}</a></li>
@@ -59,6 +59,7 @@ const year = new Date().getFullYear();
         {legalPages.map((p) => (
           <li><a href={path(p, locale)} class="hover:text-white">{legal[p as 'legal' | 'privacy' | 'terms']}</a></li>
         ))}
+        <li><button type="button" data-cookie-settings class="hover:text-white">{cookieManage}</button></li>
       </ul>
     </div>
     <p class="mt-4 text-xs text-brand-300">{t.footerLegal}</p>

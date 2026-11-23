@@ -10,14 +10,14 @@ const t = FORM[locale];
 ---
 
 <div class="rounded-3xl border border-ink-900/5 bg-white p-6 shadow-lg shadow-ink-900/5 sm:p-8">
-  <h3 class="text-2xl font-bold text-ink-900">{t.heading}</h3>
+  <h2 class="text-2xl font-bold text-ink-900">{t.heading}</h2>
   <p class="mt-2 text-sm leading-relaxed text-ink-700">{t.subheading}</p>
   <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-brand-600">{t.b2bNotice}</p>
 
   <form id="quote-form" class="mt-6 space-y-4">
-    <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY" />
-    <input type="hidden" name="subject" value="Nouvelle demande de devis — belcleanfac.com" />
-    <input type="hidden" name="from_name" value="Site belcleanfac.com" />
+    <input type="hidden" name="access_key" value="6c1728f9-05d3-447c-90d7-53dfb5fff9f0" />
+    <input type="hidden" name="subject" value="Nouvelle demande de devis — belcleanfac.be" />
+    <input type="hidden" name="from_name" value="Site belcleanfac.be" />
     <input type="text" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
     <div class="grid gap-4 sm:grid-cols-2">
@@ -92,6 +92,15 @@ const t = FORM[locale];
         status.textContent = success;
         status.className = 'text-sm font-medium text-green-700';
         form.reset();
+        if (typeof window.gtag === 'function') {
+          // GA4 lead event (visible in Analytics Realtime / key events) alongside the Google Ads conversion below.
+          window.gtag('event', 'generate_lead', { form_name: 'quote_request' });
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-18460213743/_j_4CN7Er_wcEO-DwuJE',
+            value: 1.0,
+            currency: 'EUR',
+          });
+        }
       } else {
         throw new Error(result.message || 'error');
       }

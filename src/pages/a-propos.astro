@@ -14,7 +14,7 @@ const stats = [
   { value: '20+', label: "ans d'expertise" },
   { value: '100%', label: 'Belgique couverte' },
   { value: 'VCA', label: 'certification sécurité' },
-  { value: 'ISO 9000', label: 'certification qualité' },
+  { value: 'UGBN/ABSU', label: 'fédération professionnelle' },
 ];
 
 const equipment = [
@@ -23,7 +23,7 @@ const equipment = [
   { icon: 'droplet', title: 'Camion Karcher', description: 'Nettoyage haute pression de façades, sols et surfaces extérieures.' },
   { icon: 'spark', title: 'Autolaveuse grande surface', description: "Entretien rapide et efficace des sols d'entrepôts et de grandes surfaces." },
   { icon: 'pole', title: "Système d'eau osmosée", description: "Perches télescopiques et eau déminéralisée pour un nettoyage de vitres sans traces, depuis le sol." },
-  { icon: 'blaster', title: 'Sableuse IBIX', description: "Décapage doux et précis pour l'élimination des graffitis sans endommager les supports." },
+  { icon: 'blaster', title: 'Sableuse IBIX', description: "Sablage doux et précis pour l'élimination des graffitis sans endommager les supports." },
   { icon: 'steam', title: 'Machine à vapeur', description: 'Nettoyage et désinfection à haute température, sans produits chimiques.' },
   { icon: 'carpet', title: 'Injection/extraction', description: 'Nettoyage en profondeur des tapis et moquettes par injection-extraction.' },
 ];
@@ -32,12 +32,13 @@ const equipment = [
 <Base
   locale={locale}
   page="about"
+  pageType="AboutPage"
   title="À propos de BCF — Belgium Cleaning Facilities"
-  description="Depuis 1998, une expertise en nettoyage professionnel certifiée VCA et ISO 9000, active dans toute la Belgique."
+  description="Depuis 1998, une expertise en nettoyage professionnel certifiée VCA, active dans toute la Belgique."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="À propos de BCF"
         title="Depuis 1998, une expertise reconnue en nettoyage professionnel"
         description="Belgium Cleaning Facilities accompagne les entreprises dans toute la Belgique avec un matériel professionnel adapté à chaque situation et une équipe qualifiée, formée aux exigences des environnements industriels et sensibles."
@@ -55,7 +56,6 @@ const equipment = [
     description="Nos équipes interviennent quotidiennement sur des sites industriels, hospitaliers, hôteliers et universitaires. Certifiées VCA, elles connaissent les exigences de sécurité propres à chaque environnement et s'adaptent aux contraintes de chaque client : site occupé, horaires décalés, zones sensibles."
     points={[
       'Certification VCA pour les interventions en environnement industriel',
-      'Certification qualité ISO 9000',
       'Équipes formées au matériel professionnel et aux consignes de sécurité',
       'Disponibilité adaptée aux contraintes de chaque site',
     ]}
@@ -86,10 +86,9 @@ const equipment = [
     image="/images/certif-VCA.jpg"
     eyebrow="Certifications"
     title="Des certifications reconnues par nos clients professionnels"
-    description="Nos certifications VCA et ISO 9000 garantissent à nos clients un niveau de sécurité et de qualité conforme aux exigences des environnements industriels, hospitaliers et institutionnels."
+    description="Notre certification VCA garantit à nos clients un niveau de sécurité conforme aux exigences des environnements industriels, hospitaliers et institutionnels."
     points={[
       'VCA — sécurité, santé et environnement sur les chantiers',
-      'ISO 9000 — système de management de la qualité',
       "Membre de l'UGBN/ABSU, la fédération professionnelle du secteur du nettoyage en Belgique",
       'Assurances professionnelles adaptées à nos activités',
       'Toute la Belgique, avec un point d’ancrage à Londerzeel',

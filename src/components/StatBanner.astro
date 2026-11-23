@@ -9,13 +9,14 @@ interface Props {
 }
 
 const { stats } = Astro.props;
+const colsClass = stats.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4';
 ---
 
 <section class="border-y border-brand-900/5 bg-brand-50">
-  <div data-reveal-group class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:grid-cols-4 lg:px-8">
+  <div data-reveal-group class:list={['mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:px-8', colsClass]}>
     {stats.map((s) => (
       <div data-reveal class="text-center">
-        <p class="text-3xl font-extrabold text-brand-700 sm:text-4xl">{s.value}</p>
+        <p class:list={['font-extrabold text-brand-700', s.value.length > 6 ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl']}>{s.value}</p>
         <p class="mt-1 text-sm font-medium text-ink-700">{s.label}</p>
       </div>
     ))}

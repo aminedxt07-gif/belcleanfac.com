@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import StatBanner from '../../components/StatBanner.astro';
@@ -7,16 +8,27 @@ import ServiceCard from '../../components/ServiceCard.astro';
 import CTABanner from '../../components/CTABanner.astro';
 import Icon from '../../components/Icon.astro';
 import PhotoLightbox from '../../components/PhotoLightbox.astro';
-import { path, UI } from '../../i18n/config';
+import BlogCard from '../../components/BlogCard.astro';
+import { path, UI, BLOG } from '../../i18n/config';
+import FAQ from '../../components/FAQ.astro';
+import { HOME_FAQ, SERVICES_FAQ } from '../../i18n/faq';
+import { faqNode, serviceNodes, SITE } from '../../i18n/seo';
+import { SERVICE_KEYS, SERVICE_PATHS } from '../../i18n/service-pages';
+import { PATHS } from '../../i18n/config';
 
 const locale = 'en' as const;
 const t = UI[locale];
+const tBlog = BLOG[locale];
+
+const latestPosts = (await getCollection('blog', (p) => p.data.locale === locale && !p.data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 
 const services = [
   {
     image: '/images/nacelles-facade-brique-immeuble-residentiel.jpg',
     title: 'Windows & facades',
-    description: 'High-level windows, facade stripping, moss and graffiti removal.',
+    description: 'High-level windows, facade sandblasting, moss and graffiti removal.',
   },
   {
     image: '/images/autolaveuse-entrepot-logistique.jpg',
@@ -38,7 +50,7 @@ const services = [
 const stats = [
   { value: '20+', label: 'years of expertise' },
   { value: '100%', label: 'of Belgium covered' },
-  { value: 'VCA · ISO 9000', label: 'certifications' },
+  { value: 'VCA', label: 'safety certification' },
   { value: '24h', label: 'quote response time' },
 ];
 
@@ -97,13 +109,17 @@ const equipment = [
   { icon: 'steam', label: 'Steam cleaning machine' },
   { icon: 'carpet', label: 'Carpet cleaning (injection/extraction)' },
 ];
+const faq = HOME_FAQ[locale];
+const pageUrl = new URL(PATHS.home[locale], SITE).toString();
+const schema = [faqNode(pageUrl, faq.items)];
 ---
 
 <Base
   locale={locale}
   page="home"
-  title="BCF — Professional cleaning for businesses in Belgium"
-  description="Belgium Cleaning Facilities: industrial, commercial and facade cleaning for businesses, across Belgium. Since 1998, VCA & ISO 9000 certified."
+  schema={schema}
+  title="Professional cleaning in Belgium: windows & industrial | BCF"
+  description="Window, facade and industrial floor cleaning for businesses across Belgium. Since 1998, VCA certified. Free quote within 24 business hours."
 >
   <Hero
     image="/images/hero-facade-vitree-bleue.jpg"
@@ -125,8 +141,8 @@ const equipment = [
       description="A team and equipment suited to every configuration."
     />
     <div data-reveal-group class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {services.map((s) => (
-        <ServiceCard image={s.image} title={s.title} description={s.description} href={path('services', locale)} linkLabel="Learn more" />
+      {services.map((s, i) => (
+        <ServiceCard image={s.image} title={s.title} description={s.description} href={SERVICE_PATHS[SERVICE_KEYS[i]][locale]} linkLabel="Learn more" />
       ))}
     </div>
   </section>
@@ -199,6 +215,39 @@ const equipment = [
       ))}
     </div>
   </section>
+
+  {latestPosts.length > 0 && (
+    <section class="bg-brand-50 py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow={tBlog.eyebrow}
+          title="Our latest articles"
+          description="Advice and best practices for maintaining your business sites."
+        />
+        <div data-reveal-group class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {latestPosts.map((post) => (
+            <BlogCard
+              locale={locale}
+              href={`${path('blog', locale)}${post.data.slug}/`}
+              image={post.data.image}
+              imageAlt={post.data.imageAlt}
+              category={post.data.category}
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+            />
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <a href={path('blog', locale)} class="text-sm font-semibold text-brand-600 hover:text-brand-700">
+            View all articles →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <FAQ eyebrow={faq.eyebrow} title={faq.title} description={faq.description} items={faq.items} />
 
   <CTABanner
     title="Have a cleaning project for us?"

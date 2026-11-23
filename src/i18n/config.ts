@@ -1,6 +1,34 @@
 export const LOCALES = ['fr', 'nl', 'en'] as const;
 export type Locale = (typeof LOCALES)[number];
 
+export const GA_MEASUREMENT_ID = 'G-3MY5B4KPQY';
+
+export const COOKIE_CONSENT: Record<Locale, { message: string; accept: string; decline: string; privacyLink: string; manage: string }> = {
+  fr: {
+    message:
+      "Nous utilisons des cookies de mesure d'audience pour comprendre comment notre site est utilisé. Vous pouvez accepter ou refuser leur utilisation.",
+    accept: 'Accepter',
+    decline: 'Refuser',
+    privacyLink: 'En savoir plus',
+    manage: 'Gérer les cookies',
+  },
+  nl: {
+    message:
+      'We gebruiken cookies om het bezoekersverkeer van onze site te meten. U kunt het gebruik ervan aanvaarden of weigeren.',
+    accept: 'Aanvaarden',
+    decline: 'Weigeren',
+    privacyLink: 'Meer weten',
+    manage: 'Cookies beheren',
+  },
+  en: {
+    message: 'We use audience-measurement cookies to understand how our site is used. You can accept or decline their use.',
+    accept: 'Accept',
+    decline: 'Decline',
+    privacyLink: 'Learn more',
+    manage: 'Manage cookies',
+  },
+};
+
 export const LOCALE_LABELS: Record<Locale, string> = {
   fr: 'FR',
   nl: 'NL',
@@ -13,6 +41,7 @@ export const PATHS = {
   services: { fr: '/services/', nl: '/nl/diensten/', en: '/en/services/' },
   sectors: { fr: '/secteurs/', nl: '/nl/sectoren/', en: '/en/sectors/' },
   about: { fr: '/a-propos/', nl: '/nl/over-ons/', en: '/en/about/' },
+  blog: { fr: '/blog/', nl: '/nl/blog/', en: '/en/blog/' },
   contact: { fr: '/contact/', nl: '/nl/contact/', en: '/en/contact/' },
   legal: { fr: '/mentions-legales/', nl: '/nl/wettelijke-vermeldingen/', en: '/en/legal-notice/' },
   privacy: { fr: '/politique-de-confidentialite/', nl: '/nl/privacybeleid/', en: '/en/privacy-policy/' },
@@ -31,6 +60,7 @@ export const NAV_LABELS: Record<Locale, Record<PageKey, string>> = {
     services: 'Services',
     sectors: 'Secteurs & références',
     about: 'À propos',
+    blog: 'Blog',
     contact: 'Contact',
   },
   nl: {
@@ -38,6 +68,7 @@ export const NAV_LABELS: Record<Locale, Record<PageKey, string>> = {
     services: 'Diensten',
     sectors: 'Sectoren & referenties',
     about: 'Over ons',
+    blog: 'Blog',
     contact: 'Contact',
   },
   en: {
@@ -45,6 +76,7 @@ export const NAV_LABELS: Record<Locale, Record<PageKey, string>> = {
     services: 'Services',
     sectors: 'Sectors & references',
     about: 'About',
+    blog: 'Blog',
     contact: 'Contact',
   },
 };
@@ -148,13 +180,58 @@ export const FORM = {
   },
 } as const;
 
+export const BLOG = {
+  fr: {
+    eyebrow: 'Blog & conseils',
+    title: "Actualités et conseils sur le nettoyage professionnel",
+    description:
+      "Conseils d'experts, bonnes pratiques et actualités BCF pour vous aider à entretenir vos sites professionnels : façades, sols industriels, entrepôts et bâtiments tertiaires.",
+    readMore: "Lire l'article",
+    backToBlog: 'Retour au blog',
+    publishedOn: 'Publié le',
+    updatedOn: 'Mis à jour le',
+    minRead: 'min de lecture',
+    empty: 'Aucun article disponible pour le moment.',
+    relatedCta: 'Un projet de nettoyage professionnel ?',
+    relatedCtaDescription: 'Contactez notre équipe pour obtenir un devis gratuit adapté à votre site.',
+  },
+  nl: {
+    eyebrow: 'Blog & advies',
+    title: 'Nieuws en advies over professionele reiniging',
+    description:
+      'Expertadvies, goede praktijken en BCF-nieuws om u te helpen bij het onderhoud van uw professionele sites: gevels, industriële vloeren, magazijnen en tertiaire gebouwen.',
+    readMore: 'Artikel lezen',
+    backToBlog: 'Terug naar blog',
+    publishedOn: 'Gepubliceerd op',
+    updatedOn: 'Bijgewerkt op',
+    minRead: 'min. leestijd',
+    empty: 'Momenteel geen artikels beschikbaar.',
+    relatedCta: 'Een professioneel schoonmaakproject?',
+    relatedCtaDescription: 'Neem contact op met ons team voor een gratis offerte op maat van uw site.',
+  },
+  en: {
+    eyebrow: 'Blog & insights',
+    title: 'News and advice on professional cleaning',
+    description:
+      'Expert advice, best practices and BCF news to help you maintain your business sites: facades, industrial floors, warehouses and commercial buildings.',
+    readMore: 'Read the article',
+    backToBlog: 'Back to blog',
+    publishedOn: 'Published on',
+    updatedOn: 'Updated on',
+    minRead: 'min read',
+    empty: 'No articles available at the moment.',
+    relatedCta: 'A professional cleaning project?',
+    relatedCtaDescription: 'Contact our team for a free quote tailored to your site.',
+  },
+} as const;
+
 export const UI = {
   fr: {
     tagline: 'Spécialiste du nettoyage professionnel pour entreprises',
     ctaQuote: 'Demander un devis',
     ctaCall: 'Nous appeler',
-    phone1: '+32 484 51 94 99',
-    phone2: '+32 472 54 18 04',
+    phone1: '+32 478 47 08 59',
+    phone2: '+32 486 09 16 06',
     email: 'info@belcleanfac.be',
     address: "Kasteelstraat 16A, 1840 Londerzeel",
     coverage: 'Toute la Belgique',
@@ -168,8 +245,8 @@ export const UI = {
     tagline: 'Specialist in professionele reiniging voor bedrijven',
     ctaQuote: 'Offerte aanvragen',
     ctaCall: 'Bel ons',
-    phone1: '+32 484 51 94 99',
-    phone2: '+32 472 54 18 04',
+    phone1: '+32 478 47 08 59',
+    phone2: '+32 486 09 16 06',
     email: 'info@belcleanfac.be',
     address: 'Kasteelstraat 16A, 1840 Londerzeel',
     coverage: 'Heel België',
@@ -183,8 +260,8 @@ export const UI = {
     tagline: 'Professional cleaning specialist for businesses',
     ctaQuote: 'Request a quote',
     ctaCall: 'Call us',
-    phone1: '+32 484 51 94 99',
-    phone2: '+32 472 54 18 04',
+    phone1: '+32 478 47 08 59',
+    phone2: '+32 486 09 16 06',
     email: 'info@belcleanfac.be',
     address: 'Kasteelstraat 16A, 1840 Londerzeel, Belgium',
     coverage: 'All of Belgium',

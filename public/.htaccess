@@ -1,0 +1,51 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Canonical host: www -> apex (avoids duplicate content) ---
+RewriteCond %{HTTP_HOST} ^www\.belcleanfac\.be$ [NC]
+RewriteRule ^(.*)$ https://belcleanfac.be/$1 [R=301,L]
+
+# --- Legacy WordPress URLs: 301 redirects to the new site ---
+RewriteRule ^nettoyage-des-graffitis/?$ /nettoyage-vitres-facades/ [R=301,L]
+RewriteRule ^nettoyage-dhotel/?$ /secteurs/ [R=301,L]
+RewriteRule ^nettoyage-haute-pression/?$ /nettoyage-sols-industriels/ [R=301,L]
+RewriteRule ^nettoyage-de-fin-de-chantier/?$ /nettoyage-batiments-bureaux/ [R=301,L]
+RewriteRule ^nettoyage-de-parking/?$ /nettoyage-sols-industriels/ [R=301,L]
+RewriteRule ^nettoyage-apres-incendie/?$ /services/ [R=301,L]
+RewriteRule ^nettoyage-de-bureaux/?$ /nettoyage-batiments-bureaux/ [R=301,L]
+RewriteRule ^nettoyage-des-residences/?$ / [R=301,L]
+RewriteRule ^galeries/?$ / [R=301,L]
+RewriteRule ^desinfection-covid-19-des-surfaces-et-batiments/?$ /services/ [R=301,L]
+
+RewriteRule ^nl/hotelschoonmaak/?$ /nl/sectoren/ [R=301,L]
+RewriteRule ^nl/einde-bouw-reiniging/?$ /nl/gebouwreiniging-kantoren/ [R=301,L]
+RewriteRule ^nl/contact-2/?$ /nl/contact/ [R=301,L]
+RewriteRule ^nl/galerij/?$ /nl/ [R=301,L]
+RewriteRule ^nl/parkeren-reiniging/?$ /nl/industriele-vloerreiniging/ [R=301,L]
+RewriteRule ^nl/vloerreiniging/?$ /nl/industriele-vloerreiniging/ [R=301,L]
+RewriteRule ^nl/schoonmaak-van-woningen/?$ /nl/ [R=301,L]
+
+# WordPress asset paths that no longer exist: tell Google they're permanently gone
+RewriteRule ^wp-content/.*$ - [G,L]
+RewriteRule ^wp-admin/.*$ - [G,L]
+RewriteRule ^wp-login\.php$ - [G,L]
+
+# --- Custom 404 ---
+ErrorDocument 404 /404.html
+
+# --- Performance: compression + browser caching (Core Web Vitals) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json application/ld+json image/svg+xml application/xml text/plain
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/html "access plus 10 minutes"
+</IfModule>

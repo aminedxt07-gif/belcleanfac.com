@@ -2,41 +2,115 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { PATHS, type Locale, type PageKey } from '../i18n/config';
+import CookieConsent from '../components/CookieConsent.astro';
+import { PATHS, GA_MEASUREMENT_ID, type Locale, type PageKey } from '../i18n/config';
+import { organizationNode, websiteNode, webPageNode, breadcrumbNode, defaultBreadcrumb, type BreadcrumbItem } from '../i18n/seo';
 
 interface Props {
   locale: Locale;
   page: PageKey;
   title: string;
   description: string;
+  /** Overrides the canonical/hreflang paths derived from PATHS[page] — used for dynamic pages (e.g. blog articles) that don't map to a single static path per locale. */
+  alternates?: Record<Locale, string>;
+  image?: string;
+  imageAlt?: string;
+  /** Extra JSON-LD nodes for this page (Service, FAQPage, Article...). Added to the shared @graph. */
+  schema?: Record<string, unknown>[];
+  /** Overrides the default Home > Page breadcrumb (e.g. blog articles add a third level). */
+  breadcrumb?: BreadcrumbItem[];
+  /** schema.org WebPage subtype, e.g. AboutPage, ContactPage, CollectionPage. */
+  pageType?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  publishedTime?: Date;
+  modifiedTime?: Date;
 }
 
-const { locale, page, title, description } = Astro.props;
-const site = Astro.site?.origin ?? 'https://belcleanfac.com';
+const { locale, page, title, description, alternates, image, imageAlt, schema = [], breadcrumb, pageType, ogType = 'website', noindex = false, publishedTime, modifiedTime } = Astro.props;
+const site = Astro.site?.origin ?? 'https://belcleanfac.be';
 const htmlLang = locale;
+const langPaths = alternates ?? PATHS[page];
+const ogImage = image ?? '/images/bcf-camion-nacelle-facade-brique.jpg';
+const ogImageAlt = imageAlt ?? 'Belgium Cleaning Facilities — nettoyage professionnel de vitres et façades en hauteur';
+const pageUrl = new URL(langPaths[locale], site).toString();
+const crumbs = breadcrumb ?? defaultBreadcrumb(locale, page);
+const graph = [
+  organizationNode(),
+  websiteNode(locale),
+  webPageNode({ locale, url: pageUrl, title, description, image: ogImage, type: pageType, hasBreadcrumb: crumbs.length > 0 }),
+  ...(crumbs.length > 0 ? [breadcrumbNode(pageUrl, crumbs)] : []),
+  ...schema,
+];
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
 <html lang={htmlLang}>
   <head>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      var bcfConsent = null;
+      try { bcfConsent = localStorage.getItem('bcf-cookie-consent'); } catch (e) {}
+      gtag('consent', 'default', {
+        analytics_storage: bcfConsent === 'granted' ? 'granted' : 'denied',
+        ad_storage: bcfConsent === 'granted' ? 'granted' : 'denied',
+        ad_user_data: bcfConsent === 'granted' ? 'granted' : 'denied',
+        ad_personalization: bcfConsent === 'granted' ? 'granted' : 'denied',
+      });
+    </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+      gtag('config', 'AW-18460213743');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="theme-color" content="#102763" />
+    <meta name="author" content="Belgium Cleaning Facilities" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <link rel="canonical" href={new URL(PATHS[page][locale], site).toString()} />
-    <link rel="alternate" hreflang="fr" href={new URL(PATHS[page].fr, site).toString()} />
-    <link rel="alternate" hreflang="nl" href={new URL(PATHS[page].nl, site).toString()} />
-    <link rel="alternate" hreflang="en" href={new URL(PATHS[page].en, site).toString()} />
-    <link rel="alternate" hreflang="x-default" href={new URL(PATHS[page].fr, site).toString()} />
+    {!noindex && (
+      <Fragment>
+      <link rel="canonical" href={new URL(langPaths[locale], site).toString()} />
+      <link rel="alternate" hreflang="fr" href={new URL(langPaths.fr, site).toString()} />
+      <link rel="alternate" hreflang="nl" href={new URL(langPaths.nl, site).toString()} />
+      <link rel="alternate" hreflang="en" href={new URL(langPaths.en, site).toString()} />
+      <link rel="alternate" hreflang="x-default" href={new URL(langPaths.fr, site).toString()} />
+      </Fragment>
+    )}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content="Belgium Cleaning Facilities" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={locale === 'fr' ? 'fr_BE' : locale === 'nl' ? 'nl_BE' : 'en_GB'} />
-    <meta property="og:image" content={new URL('/images/bcf-camion-nacelle-facade-brique.jpg', site).toString()} />
+    <meta property="og:image" content={new URL(ogImage, site).toString()} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {['fr_BE', 'nl_BE', 'en_GB'].filter((l) => l.slice(0, 2) !== locale).map((l) => <meta property="og:locale:alternate" content={l} />)}
+    {ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {ogType === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, site).toString()} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <slot name="head" />
 
     <link rel="icon" type="image/png" href="/images/logo-bcf.png" />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <meta name="generator" content={Astro.generator} />
   </head>
@@ -45,23 +119,47 @@ const htmlLang = locale;
     <main class="flex-1">
       <slot />
     </main>
+    {crumbs.length > 0 && (
+      <nav aria-label={locale === 'fr' ? "Fil d'Ariane" : locale === 'nl' ? 'Broodkruimelpad' : 'Breadcrumb'} class="border-t border-ink-900/5 bg-white">
+        <ol class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-2 gap-y-1 px-4 py-3 text-xs text-ink-700 sm:px-6 lg:px-8">
+          {crumbs.map((c, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="text-ink-700/40">/</span>}
+              {i === crumbs.length - 1 ? (
+                <span aria-current="page" class="font-semibold text-ink-900">{c.name}</span>
+              ) : (
+                <a href={c.path} class="hover:text-brand-600 hover:underline">{c.name}</a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <Footer locale={locale} />
+    <CookieConsent locale={locale} />
 
     <script>
       const targets = document.querySelectorAll('[data-reveal]');
       if (targets.length) {
+        // Blocks already on screen at load appear immediately (no fade); the rest fade in on scroll.
+        const initialBottom = window.innerHeight;
         const observer = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                const el = entry.target;
+                if (!el.dataset.revealSeen && entry.boundingClientRect.top < initialBottom && window.scrollY < 8) {
+                  el.style.transition = 'none';
+                }
+                el.dataset.revealSeen = '1';
+                el.classList.add('is-visible');
+                observer.unobserve(el);
               }
             }
           },
           { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
         );
-        targets.forEach((el) => observer.observe(el));
+      targets.forEach((el) => observer.observe(el));
       }
     </script>
   </body>

@@ -1,0 +1,85 @@
+---
+import { COOKIE_CONSENT, path, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = COOKIE_CONSENT[locale];
+const privacyHref = path('privacy', locale);
+---
+
+<div
+  id="cookie-consent"
+  class="hidden fixed inset-x-0 bottom-0 z-[100] border-t border-ink-900/10 bg-white px-4 py-5 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] sm:px-6 lg:px-8"
+>
+  <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-sm text-ink-700">
+      {t.message} <a href={privacyHref} class="text-brand-600 underline hover:text-brand-700">{t.privacyLink}</a>
+    </p>
+    <div class="flex shrink-0 gap-3">
+      <button
+        type="button"
+        id="cookie-decline"
+        class="rounded-full border border-ink-900/15 px-5 py-2.5 text-sm font-semibold text-ink-900 transition-colors hover:bg-ink-900/5"
+      >
+        {t.decline}
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+      >
+        {t.accept}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'bcf-cookie-consent';
+    var banner = document.getElementById('cookie-consent');
+    var acceptBtn = document.getElementById('cookie-accept');
+    var declineBtn = document.getElementById('cookie-decline');
+    var stored = null;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {}
+
+    // Shown right after the page has loaded (not during first paint) so the banner text is never the
+    // Largest Contentful Paint element. Consent stays "denied" until the visitor chooses.
+    if (!stored && banner) {
+      var showBanner = function () { setTimeout(function () { banner.classList.remove('hidden'); }, 800); };
+      if (document.readyState === 'complete') showBanner();
+      else window.addEventListener('load', showBanner);
+    }
+
+    function updateConsent(granted) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: granted ? 'granted' : 'denied',
+          ad_storage: granted ? 'granted' : 'denied',
+          ad_user_data: granted ? 'granted' : 'denied',
+          ad_personalization: granted ? 'granted' : 'denied',
+        });
+      }
+      try {
+        localStorage.setItem(STORAGE_KEY, granted ? 'granted' : 'denied');
+      } catch (e) {}
+      if (banner) banner.classList.add('hidden');
+    }
+
+    // Footer "Manage cookies" link: forget the stored choice and show the banner again.
+    document.querySelectorAll('[data-cookie-settings]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        if (banner) banner.classList.remove('hidden');
+      });
+    });
+
+    if (acceptBtn) acceptBtn.addEventListener('click', function () { updateConsent(true); });
+    if (declineBtn) declineBtn.addEventListener('click', function () { updateConsent(false); });
+  })();
+</script>

@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from './SectionHeading.astro';
+import ServiceCard from './ServiceCard.astro';
+import CTABanner from './CTABanner.astro';
+import { UI, NAV_LABELS, PATHS, path, type Locale } from '../i18n/config';
+import { CASES, CASE_KEYS, CASE_PATHS, CASE_UI, type CaseKey } from '../i18n/case-studies';
+import { SERVICE_PAGES, SERVICE_PATHS } from '../i18n/service-pages';
+
+interface Props {
+  locale: Locale;
+  caseKey: CaseKey;
+}
+
+const { locale, caseKey } = Astro.props;
+const c = CASES[locale][caseKey];
+const ui = CASE_UI[locale];
+const t = UI[locale];
+const alternates = { fr: CASE_PATHS[caseKey].fr, nl: CASE_PATHS[caseKey].nl, en: CASE_PATHS[caseKey].en };
+const breadcrumb = [
+  { name: NAV_LABELS[locale].home, path: PATHS.home[locale] },
+  { name: NAV_LABELS[locale].sectors, path: PATHS.sectors[locale] },
+  { name: c.label, path: CASE_PATHS[caseKey][locale] },
+];
+const others = CASE_KEYS.filter((k) => k !== caseKey);
+---
+
+<Base
+  locale={locale}
+  page="sectors"
+  title={c.title}
+  description={c.description}
+  alternates={alternates}
+  image={c.image}
+  imageAlt={c.imageAlt}
+  breadcrumb={breadcrumb}
+>
+  <section class="bg-brand-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading as="h1" eyebrow={c.eyebrow} title={c.h1} description={c.intro} light />
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">{ui.facts}</h2>
+      <dl class="mt-6 grid gap-px overflow-hidden rounded-2xl border border-ink-900/10 bg-ink-900/10 sm:grid-cols-2">
+        {c.facts.map((f) => (
+          <div class="bg-white p-6">
+            <dt class="text-xs font-semibold uppercase tracking-wide text-ink-700">{f.label}</dt>
+            <dd class="mt-1 font-medium text-ink-900">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div class="mt-14 space-y-12">
+        {c.sections.map((s) => (
+          <div>
+            <h2 class="text-2xl font-bold text-ink-900">{s.title}</h2>
+            {s.paragraphs.map((p) => <p class="mt-4 text-lg leading-relaxed text-ink-700">{p}</p>)}
+            {s.list && (
+              <ul class="mt-4 space-y-3">
+                {s.list.map((li) => (
+                  <li class="flex items-start gap-3 text-ink-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 h-5 w-5 shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7" />
+                    </svg>
+                    <span>{li}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center text-2xl font-bold text-ink-900">{ui.photos}</h2>
+      <div class:list={['mt-10 grid gap-6', c.photos.length >= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2']}>
+        {c.photos.map((ph) => (
+          <figure class="overflow-hidden rounded-2xl bg-white shadow-sm shadow-ink-900/5">
+            <img src={ph.src} alt={ph.alt} class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            <figcaption class="px-4 py-3 text-sm text-ink-700">{ph.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ink-900 sm:text-3xl">{ui.similarTitle}</h2>
+      <p class="mt-4 text-lg text-ink-700">{ui.similarText}</p>
+      <p class="mt-6 text-sm font-semibold uppercase tracking-wide text-ink-700">{ui.servicesLabel}</p>
+      <ul class="mt-3 flex flex-wrap justify-center gap-3">
+        {c.related.map((k) => (
+          <li><a href={SERVICE_PATHS[k][locale]} class="inline-flex rounded-full border border-brand-600/20 bg-brand-50 px-5 py-2 text-sm font-semibold text-brand-800 hover:bg-brand-100">{SERVICE_PAGES[locale][k].label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-brand-50 pb-20 pt-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={ui.moreCases} title={ui.moreCases} description={ui.moreCasesDesc} />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        {others.map((k) => {
+          const o = CASES[locale][k];
+          return <ServiceCard image={o.image} title={o.label} description={o.cardSummary} href={CASE_PATHS[k][locale]} linkLabel={ui.read} />;
+        })}
+      </div>
+      <p class="mt-10 text-center text-sm">
+        <a href={path('sectors', locale)} class="font-semibold text-brand-600 hover:text-brand-700">{ui.allRefs} →</a>
+      </p>
+    </div>
+  </section>
+
+  <CTABanner title={ui.ctaTitle} description={ui.ctaDesc} ctaLabel={t.ctaQuote} ctaHref={path('contact', locale)} phoneLabel={t.ctaCall} phone={t.phone1} />
+</Base>

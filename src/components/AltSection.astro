@@ -2,6 +2,7 @@
 interface Props {
   id?: string;
   image: string;
+  imageAlt?: string;
   eyebrow: string;
   title: string;
   description: string;
@@ -9,22 +10,24 @@ interface Props {
   reverse?: boolean;
   ctaLabel?: string;
   ctaHref?: string;
+  moreHref?: string;
+  moreLabel?: string;
   tint?: boolean;
 }
 
-const { id, image, eyebrow, title, description, points = [], reverse = false, ctaLabel, ctaHref, tint = false } = Astro.props;
+const { id, image, imageAlt, eyebrow, title, description, points = [], reverse = false, ctaLabel, ctaHref, moreHref, moreLabel, tint = false } = Astro.props;
 ---
 
 <section id={id} class:list={['scroll-mt-24 py-16 sm:py-20', tint ? 'bg-brand-50' : 'bg-white']}>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class:list={['grid items-center gap-10 lg:grid-cols-2 lg:gap-16', reverse ? 'lg:[&>*:first-child]:order-2' : '']}>
       <div class="overflow-hidden rounded-3xl">
-        <img src={image} alt={title} class="h-full w-full max-h-[480px] object-cover" loading="lazy" />
+        <img src={image} alt={imageAlt ?? title} class="h-full w-full max-h-[480px] object-cover" loading="lazy" />
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">{eyebrow}</p>
         <h2 class="mt-3 text-3xl font-bold text-ink-900 sm:text-4xl">{title}</h2>
-        <p class="mt-4 text-lg leading-relaxed text-ink-700">{description}</p>
+        {description && <p class="mt-4 text-lg leading-relaxed text-ink-700">{description}</p>}
         {points.length > 0 && (
           <ul class="mt-6 space-y-3">
             {points.map((p) => (
@@ -37,10 +40,17 @@ const { id, image, eyebrow, title, description, points = [], reverse = false, ct
             ))}
           </ul>
         )}
-        {ctaLabel && ctaHref && (
-          <a href={ctaHref} class="mt-8 inline-flex rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700">
-            {ctaLabel}
-          </a>
+        {((ctaLabel && ctaHref) || (moreHref && moreLabel)) && (
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            {ctaLabel && ctaHref && (
+              <a href={ctaHref} class="inline-flex rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700">
+                {ctaLabel}
+              </a>
+            )}
+            {moreHref && moreLabel && (
+              <a href={moreHref} class="text-sm font-semibold text-brand-600 hover:text-brand-700">{moreLabel} →</a>
+            )}
+          </div>
         )}
       </div>
     </div>

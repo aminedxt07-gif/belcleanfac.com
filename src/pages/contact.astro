@@ -15,12 +15,13 @@ const googleMapsHref = 'https://www.google.com/maps/search/?api=1&query=Kasteels
 <Base
   locale={locale}
   page="contact"
-  title="Contact & devis — BCF Nettoyage professionnel"
+  pageType="ContactPage"
+  title="Devis nettoyage professionnel gratuit — Contact | BCF"
   description="Contactez Belgium Cleaning Facilities pour une demande de devis de nettoyage professionnel. Réponse sous 24h ouvrées, dans toute la Belgique."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="Contact"
         title="Parlons de votre projet de nettoyage"
         description="Que ce soit pour un entretien régulier ou une intervention ponctuelle, notre équipe vous répond rapidement avec une offre adaptée à votre site."
@@ -43,7 +44,7 @@ const googleMapsHref = 'https://www.google.com/maps/search/?api=1&query=Kasteels
             </div>
             <div>
               <p class="text-sm font-semibold text-ink-900">Email</p>
-              <a href={`mailto:${t.email}`} class="text-sm text-ink-700 hover:text-brand-600">{t.email}</a>
+              <a href={`mailto:${t.email}`} class="inline-block py-1 text-sm text-ink-700 hover:text-brand-600">{t.email}</a>
             </div>
           </div>
 
@@ -53,8 +54,8 @@ const googleMapsHref = 'https://www.google.com/maps/search/?api=1&query=Kasteels
             </div>
             <div>
               <p class="text-sm font-semibold text-ink-900">Téléphone</p>
-              <a href={`tel:${t.phone1.replace(/\s/g, '')}`} class="block text-sm text-ink-700 hover:text-brand-600">{t.phone1}</a>
-              <a href={`tel:${t.phone2.replace(/\s/g, '')}`} class="block text-sm text-ink-700 hover:text-brand-600">{t.phone2}</a>
+              <a href={`tel:${t.phone1.replace(/\s/g, '')}`} class="block py-1 text-sm text-ink-700 hover:text-brand-600">{t.phone1}</a>
+              <a href={`tel:${t.phone2.replace(/\s/g, '')}`} class="block py-1 text-sm text-ink-700 hover:text-brand-600">{t.phone2}</a>
             </div>
           </div>
 

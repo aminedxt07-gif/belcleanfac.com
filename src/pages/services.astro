@@ -5,20 +5,29 @@ import AltSection from '../components/AltSection.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { path, UI } from '../i18n/config';
+import FAQ from '../components/FAQ.astro';
+import { HOME_FAQ, SERVICES_FAQ } from '../i18n/faq';
+import { faqNode, serviceNodes, SITE } from '../i18n/seo';
+import { SERVICE_PATHS, SERVICE_UI } from '../i18n/service-pages';
+import { PATHS } from '../i18n/config';
 
 const locale = 'fr' as const;
 const t = UI[locale];
+const faq = SERVICES_FAQ[locale];
+const pageUrl = new URL(PATHS.services[locale], SITE).toString();
+const schema = [...serviceNodes(locale, pageUrl, [{"anchor": "vitres-facades", "name": "Nettoyage de vitres et de façades en hauteur", "description": "Nettoyage de vitres avec manches télescopiques, eau osmosée, nacelles et camion élévateur ; nettoyage des châssis, sablage de façades, démoussage de toitures et enlèvement de graffitis.", "serviceType": "Window and facade cleaning"}, {"anchor": "surfaces", "name": "Nettoyage industriel de sols et grandes surfaces", "description": "Autolaveuses grande surface et matériel haute pression pour sols d'entrepôts, halls industriels, parkings et espaces tertiaires.", "serviceType": "Industrial floor cleaning"}, {"anchor": "osmose", "name": "Nettoyage de vitres à l'eau osmosée", "description": "Nettoyage à l'eau déminéralisée avec perches télescopiques : vitres, vérandas et façades vitrées sans traces, depuis le sol, sans détergent.", "serviceType": "Pure water (reverse-osmosis) window cleaning"}, {"anchor": "batiments", "name": "Entretien de bâtiments tertiaires, résidentiels et événementiels", "description": "Entretien régulier ou ponctuel de bureaux, résidences étudiantes, musées et bâtiments événementiels, y compris le nettoyage après chantier.", "serviceType": "Building maintenance cleaning"}]), faqNode(pageUrl, faq.items)];
 ---
 
 <Base
   locale={locale}
   page="services"
-  title="Nos services de nettoyage professionnel — BCF"
+  schema={schema}
+  title="Nettoyage de vitres, façades et sols industriels | BCF"
   description="Vitres et façades en hauteur, sols industriels, nettoyage à l'eau osmosée, nettoyage de bâtiments : découvrez l'ensemble des prestations de nettoyage professionnel de BCF."
 >
   <section class="bg-brand-950 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading
+      <SectionHeading as="h1"
         eyebrow="Nos services"
         title="Un savoir-faire complet en nettoyage professionnel"
         description="Depuis 1998, BCF intervient sur tout type de site pour les entreprises : vitres et façades en hauteur, sols industriels, nettoyage à l'eau osmosée et entretien de bâtiments, partout en Belgique."
@@ -29,15 +38,17 @@ const t = UI[locale];
 
   <AltSection
     id="vitres-facades"
+    moreHref={SERVICE_PATHS.windows[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/vitres-facade-nacelle-chenilles.jpg"
     eyebrow="Vitres & façades"
     title="Un nettoyage impeccable, même en hauteur"
     description="Nous réalisons le nettoyage de vitres avec du matériel professionnel adapté à chaque configuration : manches télescopiques et systèmes à eau osmosée pour un résultat sans traces, nacelles et camion élévateur pour les accès complexes."
     points={[
-      'Lessivage des châssis et encadrements inclus',
-      "Décapage de façades en hauteur (briques, pierre, béton)",
+      'Nettoyage des châssis et encadrements inclus',
+      "Sablage de façades en hauteur (briques, pierre, béton)",
       'Démoussage et nettoyage de toitures',
-      'Enlèvement de graffitis et techniques de décapage douces',
+      'Enlèvement de graffitis et techniques de sablage douces',
     ]}
     ctaLabel={t.ctaQuote}
     ctaHref={path('contact', locale)}
@@ -63,6 +74,8 @@ const t = UI[locale];
 
   <AltSection
     id="surfaces"
+    moreHref={SERVICE_PATHS.floors[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-entrepot-hoogwerkers.jpg"
     eyebrow="Sols & grandes surfaces"
     title="Nettoyage industriel de sols et grandes surfaces"
@@ -81,6 +94,8 @@ const t = UI[locale];
 
   <AltSection
     id="osmose"
+    moreHref={SERVICE_PATHS.osmosis[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/nettoyage-vitres-perche-eau-osmosee.jpg"
     eyebrow="Nettoyage à l'eau osmosée"
     title="Des vitres sans traces, même en hauteur, sans produits chimiques"
@@ -97,6 +112,8 @@ const t = UI[locale];
 
   <AltSection
     id="batiments"
+    moreHref={SERVICE_PATHS.buildings[locale]}
+    moreLabel={SERVICE_UI[locale].learnMore}
     image="/images/autolaveuse-hall-musee-evenementiel.jpg"
     eyebrow="Bâtiments & résidentiel collectif"
     title="Entretien de bâtiments tertiaires, résidentiels et événementiels"
@@ -112,6 +129,8 @@ const t = UI[locale];
     ctaLabel={t.ctaQuote}
     ctaHref={path('contact', locale)}
   />
+
+  <FAQ eyebrow={faq.eyebrow} title={faq.title} description={faq.description} items={faq.items} tint />
 
   <CTABanner
     title="Une prestation sur-mesure pour votre site"
