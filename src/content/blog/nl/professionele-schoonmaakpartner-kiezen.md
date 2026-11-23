@@ -14,7 +14,7 @@ Het juiste bedrijf voor industriële reiniging kiezen is geen detail: een niet-a
 
 ## 1. Veiligheids- en kwaliteitscertificeringen
 
-Op een industriële, ziekenhuis- of logistieke site moeten de interveniërende teams de specifieke veiligheidsregels van deze omgevingen kennen. De **VCA**-certificering (veiligheid, gezondheid en milieu op de werf) is bijna onmisbaar voor elke interventie in een industriële omgeving in België. Vraag uw partner steevast om deze certificering te staven.
+Op een industriële, ziekenhuis- of logistieke site moeten de interveniërende teams de specifieke veiligheidsregels van deze omgevingen kennen. De **VCA**-certificering van de arbeiders (veiligheid, gezondheid en milieu op de werf) is bijna onmisbaar voor elke interventie in een industriële omgeving in België. Vraag uw partner steevast naar de VCA-certificaten van zijn arbeiders.
 
 ## 2. Professioneel materiaal aangepast aan elk oppervlak
 
@@ -34,4 +34,4 @@ Een partner actief in meerdere sectoren (industrie, automotive, hotelwezen, hoge
 
 ## Samengevat
 
-VCA-certificering, gevarieerd professioneel materiaal, flexibele organisatie en commerciële reactiviteit: dit zijn de vier pijlers om te controleren voordat u het onderhoud van uw site toevertrouwt aan een partner. Bij BCF combineren we deze criteria al meer dan 20 jaar voor bedrijven in heel België.
+VCA-gecertificeerde arbeiders, gevarieerd professioneel materiaal, flexibele organisatie en commerciële reactiviteit: dit zijn de vier pijlers om te controleren voordat u het onderhoud van uw site toevertrouwt aan een partner. Bij BCF combineren we deze criteria voor bedrijven in heel België, met een zaakvoerder die sinds 1998 in de schoonmaak werkt.

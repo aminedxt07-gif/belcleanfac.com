@@ -11,7 +11,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
     items: [
       {
         q: "Qui est Belgium Cleaning Facilities (BCF) ?",
-        a: "Belgium Cleaning Facilities (BCF) est une société de nettoyage professionnel basée à Londerzeel, active dans toute la Belgique depuis 1998. Elle intervient exclusivement pour les entreprises : nettoyage de vitres et de façades en hauteur, de sols industriels, d'entrepôts, de parkings et de bâtiments tertiaires. BCF est certifiée VCA.",
+        a: "Belgium Cleaning Facilities (BCF) est une société de nettoyage professionnel basée à Londerzeel, active dans toute la Belgique et dirigée par un gérant qui travaille dans le nettoyage depuis 1998. Elle intervient exclusivement pour les entreprises : nettoyage de vitres et de façades en hauteur, de sols industriels, d'entrepôts, de parkings et de bâtiments tertiaires. Ses ouvriers sont certifiés VCA.",
       },
       {
         q: 'Dans quelles régions de Belgique intervenez-vous ?',
@@ -35,7 +35,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
       },
       {
         q: 'Quelles certifications possédez-vous ?',
-        a: "BCF est certifiée VCA (Safety Checklist Contractors), la référence en matière de sécurité pour les sous-traitants intervenant sur sites industriels, logistiques et institutionnels. Nous sommes également sous-traitant de grands groupes de nettoyage tels que GOM, Vebego et Group F.",
+        a: "Nos ouvriers sont certifiés VCA (Safety Checklist Contractors), la référence en matière de sécurité sur les sites industriels, logistiques et institutionnels. Nos nacelles sont contrôlées par Vinçotte et nous sommes membres de l'UGBN/ABSU, la fédération du secteur. Nous sommes également sous-traitant de grands groupes de nettoyage tels que GOM, Vebego et Group F.",
       },
     ],
   },
@@ -46,7 +46,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
     items: [
       {
         q: 'Wie is Belgium Cleaning Facilities (BCF)?',
-        a: 'Belgium Cleaning Facilities (BCF) is een professioneel schoonmaakbedrijf uit Londerzeel, sinds 1998 actief in heel België. BCF werkt uitsluitend voor bedrijven: ramen- en gevelreiniging op hoogte, industriële vloerreiniging, magazijnen, parkings en tertiaire gebouwen. BCF is VCA-gecertificeerd.',
+        a: 'Belgium Cleaning Facilities (BCF) is een professioneel schoonmaakbedrijf uit Londerzeel, actief in heel België, met een zaakvoerder die sinds 1998 in de schoonmaak werkt. BCF werkt uitsluitend voor bedrijven: ramen- en gevelreiniging op hoogte, industriële vloerreiniging, magazijnen, parkings en tertiaire gebouwen. De arbeiders van BCF zijn VCA-gecertificeerd.',
       },
       {
         q: 'In welke regio’s van België werken jullie?',
@@ -70,7 +70,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
       },
       {
         q: 'Over welke certificaten beschikt BCF?',
-        a: 'BCF is VCA-gecertificeerd (Safety Checklist Contractors), de veiligheidsreferentie voor onderaannemers op industriële, logistieke en institutionele sites. Wij zijn ook onderaannemer van grote schoonmaakgroepen zoals GOM, Vebego en Group F.',
+        a: 'Onze arbeiders zijn VCA-gecertificeerd (Safety Checklist Contractors), de veiligheidsreferentie op industriële, logistieke en institutionele sites. Onze hoogwerkers worden gekeurd door Vinçotte en wij zijn lid van de ABSU/UGBN, de beroepsfederatie. Wij zijn ook onderaannemer van grote schoonmaakgroepen zoals GOM, Vebego en Group F.',
       },
     ],
   },
@@ -81,7 +81,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
     items: [
       {
         q: 'Who is Belgium Cleaning Facilities (BCF)?',
-        a: 'Belgium Cleaning Facilities (BCF) is a professional cleaning company based in Londerzeel, active across Belgium since 1998. It works exclusively for businesses: high-level window and facade cleaning, industrial floors, warehouses, car parks and commercial buildings. BCF is VCA certified.',
+        a: 'Belgium Cleaning Facilities (BCF) is a professional cleaning company based in Londerzeel, active across Belgium and run by a manager who has worked in cleaning since 1998. It works exclusively for businesses: high-level window and facade cleaning, industrial floors, warehouses, car parks and commercial buildings. Its workers are VCA certified.',
       },
       {
         q: 'Which areas of Belgium do you cover?',
@@ -105,7 +105,7 @@ export const HOME_FAQ: Record<Locale, FaqSet> = {
       },
       {
         q: 'Which certifications does BCF hold?',
-        a: 'BCF is VCA certified (Safety Checklist Contractors), the safety standard for subcontractors working on industrial, logistics and institutional sites. We are also a subcontractor for major cleaning groups such as GOM, Vebego and Group F.',
+        a: 'Our workers are VCA certified (Safety Checklist Contractors), the safety standard on industrial, logistics and institutional sites. Our aerial lifts are inspected by Vinçotte and we are members of UGBN/ABSU, the cleaning industry federation. We are also a subcontractor for major cleaning groups such as GOM, Vebego and Group F.',
       },
     ],
   },

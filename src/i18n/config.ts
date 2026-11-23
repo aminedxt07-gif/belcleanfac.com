@@ -236,10 +236,11 @@ export const UI = {
     address: "Kasteelstraat 16A, 1840 Londerzeel",
     coverage: 'Toute la Belgique',
     footerAbout:
-      "Belgium Cleaning Facilities (BCF) est une société de nettoyage professionnel active dans toute la Belgique depuis 1998, spécialisée dans le nettoyage industriel, tertiaire et de façades pour les entreprises.",
+      "Belgium Cleaning Facilities (BCF) est une société de nettoyage professionnel active dans toute la Belgique, spécialisée dans le nettoyage industriel, tertiaire et de façades pour les entreprises. Notre gérant travaille dans le métier depuis 1998.",
     footerRights: 'Tous droits réservés.',
     footerLegal: 'Site réservé aux professionnels — BCF ne traite pas les demandes de particuliers.',
     langSwitchLabel: 'Langue',
+    badgeVca: 'Ouvriers VCA',
   },
   nl: {
     tagline: 'Specialist in professionele reiniging voor bedrijven',
@@ -251,10 +252,11 @@ export const UI = {
     address: 'Kasteelstraat 16A, 1840 Londerzeel',
     coverage: 'Heel België',
     footerAbout:
-      'Belgium Cleaning Facilities (BCF) is een professioneel schoonmaakbedrijf dat sinds 1998 actief is in heel België, gespecialiseerd in industriële reiniging, tertiaire reiniging en gevelreiniging voor bedrijven.',
+      'Belgium Cleaning Facilities (BCF) is een professioneel schoonmaakbedrijf dat actief is in heel België, gespecialiseerd in industriële reiniging, tertiaire reiniging en gevelreiniging voor bedrijven. Onze zaakvoerder werkt sinds 1998 in het vak.',
     footerRights: 'Alle rechten voorbehouden.',
     footerLegal: 'Deze site is uitsluitend bestemd voor professionals — BCF behandelt geen aanvragen van particulieren.',
     langSwitchLabel: 'Taal',
+    badgeVca: 'VCA-arbeiders',
   },
   en: {
     tagline: 'Professional cleaning specialist for businesses',
@@ -266,9 +268,10 @@ export const UI = {
     address: 'Kasteelstraat 16A, 1840 Londerzeel, Belgium',
     coverage: 'All of Belgium',
     footerAbout:
-      'Belgium Cleaning Facilities (BCF) is a professional cleaning company active across Belgium since 1998, specialised in industrial, commercial and facade cleaning for businesses.',
+      'Belgium Cleaning Facilities (BCF) is a professional cleaning company active across Belgium, specialised in industrial, commercial and facade cleaning for businesses. Our manager has worked in the trade since 1998.',
     footerRights: 'All rights reserved.',
     footerLegal: 'This site is for businesses only — BCF does not handle requests from private individuals.',
     langSwitchLabel: 'Language',
+    badgeVca: 'VCA workers',
   },
 } as const;

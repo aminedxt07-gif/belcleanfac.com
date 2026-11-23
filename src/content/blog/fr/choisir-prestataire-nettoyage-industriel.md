@@ -14,7 +14,7 @@ Choisir la bonne entreprise de nettoyage industriel n'est pas un détail : un pr
 
 ## 1. Les certifications de sécurité et de qualité
 
-Sur un site industriel, hospitalier ou logistique, les équipes qui interviennent doivent connaître les règles de sécurité propres à ces environnements. La certification **VCA** (sécurité, santé et environnement sur chantier) est un prérequis quasi incontournable pour toute intervention en milieu industriel en Belgique. Demandez systématiquement à votre prestataire de justifier cette certification.
+Sur un site industriel, hospitalier ou logistique, les équipes qui interviennent doivent connaître les règles de sécurité propres à ces environnements. La certification **VCA** des ouvriers (sécurité, santé et environnement sur chantier) est un prérequis quasi incontournable pour toute intervention en milieu industriel en Belgique. Demandez systématiquement à votre prestataire de montrer les certificats VCA de ses ouvriers.
 
 ## 2. Un matériel professionnel adapté à chaque surface
 
@@ -34,4 +34,4 @@ Un prestataire actif dans plusieurs secteurs (industrie, automobile, hôtellerie
 
 ## En résumé
 
-Certification VCA, matériel professionnel varié, organisation flexible et réactivité commerciale : ce sont les quatre piliers à vérifier avant de confier l'entretien de votre site à un prestataire. Chez BCF, nous réunissons ces critères depuis plus de 20 ans d'intervention pour des entreprises partout en Belgique.
+Ouvriers certifiés VCA, matériel professionnel varié, organisation flexible et réactivité commerciale : ce sont les quatre piliers à vérifier avant de confier l'entretien de votre site à un prestataire. Chez BCF, nous réunissons ces critères pour des entreprises partout en Belgique, avec un gérant qui travaille dans le nettoyage depuis 1998.

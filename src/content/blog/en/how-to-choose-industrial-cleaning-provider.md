@@ -14,7 +14,7 @@ Choosing the right industrial cleaning company is not a minor decision: a poorly
 
 ## 1. Safety and quality certifications
 
-On an industrial, hospital or logistics site, the teams on the ground need to know the safety rules specific to these environments. **VCA** certification (safety, health and environment on site) is almost a prerequisite for any intervention in an industrial setting in Belgium. Always ask your provider to justify this certification.
+On an industrial, hospital or logistics site, the teams on the ground need to know the safety rules specific to these environments. **VCA** certification of the workers (safety, health and environment on site) is almost a prerequisite for any intervention in an industrial setting in Belgium. Always ask your provider to show its workers' VCA certificates.
 
 ## 2. Professional equipment suited to every surface
 
@@ -34,4 +34,4 @@ A provider active across several sectors (industry, automotive, hospitality, hig
 
 ## In summary
 
-VCA certification, varied professional equipment, flexible organisation and commercial responsiveness: these are the four pillars to check before entrusting the upkeep of your site to a provider. At BCF, we've combined these criteria for over 20 years, working with businesses across Belgium.
+VCA-certified workers, varied professional equipment, flexible organisation and commercial responsiveness: these are the four pillars to check before entrusting the upkeep of your site to a provider. At BCF, we bring these criteria together for businesses across Belgium, led by a manager who has worked in cleaning since 1998.

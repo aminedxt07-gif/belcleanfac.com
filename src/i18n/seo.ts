@@ -34,8 +34,7 @@ export function organizationNode() {
     },
     image: abs('/images/bcf-camion-nacelle-facade-brique.jpg'),
     description:
-      'Belgium Cleaning Facilities (BCF) is a professional cleaning company for businesses, active across Belgium since 1998: windows and facades at height, industrial floors, osmosis-water cleaning and building maintenance. VCA certified.',
-    foundingDate: '1998',
+      'Belgium Cleaning Facilities (BCF) is a professional cleaning company for businesses, active across Belgium: windows and facades at height, industrial floors, osmosis-water cleaning and building maintenance. VCA-certified workers.',
     vatID: COMPANY.vat,
     taxID: COMPANY.bce,
     email: COMPANY.email,
@@ -59,11 +58,6 @@ export function organizationNode() {
       'Post-construction cleaning',
       'Graffiti removal',
     ],
-    hasCredential: {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'VCA (Safety Checklist Contractors)',
-      credentialCategory: 'certification',
-    },
     contactPoint: [
       {
         '@type': 'ContactPoint',
